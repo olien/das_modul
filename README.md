@@ -4,29 +4,58 @@ Dieses AddOn installiert das Modul "0000 - Standard" und die zugehörigen Dateie
 
 Auf einer Einstellungsseite im Modul kann die jeweile Anordung der Inhalte ausgewählt werden (jederzeit änderbar). Hier gibt es auch die Möglichkeit für diese Section eine individuelle ID und Klassen zu vergeben. Zudem kann für jede Col eine Klasse vergeben werden. Es besteht die Möglickeit zu wählen ob der Container Fluid sein soll. **TESTEN!*
 
+
+---
+
 ### Installation / Benutzung
 
 - Bei den Ausgaben im Frontend wird das Bootstrap4 Grid benutzt.
 
+---
 ### Module (eigentlich Funktionen)
 
-- **0010 - Überschrift** (headline_input / headline_output) 
-Hier kann eine Überschrift eingepflegt werden. Zusätzlich ist die Angabe der "Größe" (H1-H6) ist möglich.  
+|0010 - Überschrift (headline_input / headline_output)|
+|---|
+|Hier kann eine Überschrift eingepflegt werden. Zusätzlich ist die Angabe der "Größe" (H1-H6) ist möglich.|
 
-- **0020 - Text** (textarea_input / textarea_output) 
-Es wird eine Textarea bereitgestellt. Je nach installiertem Editor wird dieser eingebunden. Aktuell funktionieren leider nur die AddOns: _MarkitUp_ und _Tinymce4_ (siehe: https://github.com/FriendsOfREDAXO/redactor2/issues/134)<br/>_Sollten schon Inhalte eingepflegt sein können bei einem Wechsel des Editors alle Formtierungen verloren gehen._ 
-
-- **0030 - Bild** (image_input / image_output)
-Hier kann ein Bild ausgewählt und intern verlinkt werden. **Hierzu gibt es CSS Angaben im "frontend.css"**.
-
-
-- **0040 - Download** (downloads_input / downloads_output)
-**Funktioniert grad nicht**
+|0020 - Text (textarea_input / textarea_output)|
+|---|
+|Es wird eine Textarea bereitgestellt. Je nach installiertem Editor wird dieser eingebunden. Aktuell funktionieren leider nur die AddOns: _MarkitUp_ und _Tinymce4_ (siehe: https://github.com/FriendsOfREDAXO/redactor2/issues/134)<br/>_Sollten schon Inhalte eingepflegt sein können bei einem Wechsel des Editors alle Formtierungen verloren gehen._|
 
 
-- **0050 - Film (extern)** (video_input / video_output)
-Durch die Angebe eine YouTube bz. Vimeo Film ID kann das Video im Fornten dargestellt werden. Hier sollte noch eine DSGVO gerechte Lösung gefunden werden. **Hierzu gibt es CSS Angaben im "frontend.css"**.
+|0030 - Bild (image_input / image_output)|
+|---|
+|Hier kann ein Bild ausgewählt und intern verlinkt werden. **CSS benötigt**.|  
+  
+|0040 - Download** (downloads_input / downloads_output)|
+|---|
+|**Funktioniert grad nicht**.|  
+ 
+|0050 - Film (extern)** (video_input / video_output)|
+|---|
+|Durch die Angebe eine YouTube bz. Vimeo Film ID kann das Video im Fornten dargestellt werden. Hier sollte noch eine DSGVO gerechte Lösung gefunden werden. **CSS benötigt**.|  
 
+
+|0060 - Link (intern / extern) (link_input / link_output)|
+|---|
+|Durch die Angebe eine YouTube bz. Vimeo Film ID kann das Video im Fornten dargestellt werden. Hier sollte noch eine DSGVO gerechte Lösung gefunden werden. **CSS benötigt**.|
+
+
+|0070 - Card (Teaser)|
+|---|
+||
+
+|0080 - Abstand einfügen|
+|---|
+||
+
+|0090 - Artikel im Modal öffnen|
+|---|
+||
+
+|0100 - Gallery / Carousel|
+|---|
+||
 
 
 ### Sonstige Funktionen
@@ -64,12 +93,6 @@ Test Template:
 
 REX_ARTICLE[]
 
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-</body>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
 </html>
-
-
-
 ```
