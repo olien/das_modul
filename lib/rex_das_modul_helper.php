@@ -10,29 +10,32 @@
 class rex_das_modul_helper
 {
 
-  ////////////////////////////////////
-  //  check Editor (MarkitUp / Redactor 2 / CKE5)
-  ////////////////////////////////////
-  function check_editor() {
-    if (!rex_addon::get('markitup')->isAvailable() && !rex_addon::get('redactor2')->isAvailable() && !rex_addon::get('cke5')->isAvailable()) {
-    echo rex_view::error('Dieses Modul ben&ouml;tigt das "MarkItUp", das "Redactor 2" oder das "CKEditor 5
-" Addon!');
-    } else {
-        if (rex_addon::get('markitup')->isAvailable()) {
-          $return = 'markitup';
-          if (!markitup::profileExists('simple')) {
-                    markitup::insertProfile('simple', 'Angelegt durch das Addon "Das Modul".', 'textile', 200, 800, 'relative', 'bold,italic,underline,deleted,quote,sub,sup,code,unorderedlist, orderedlist, grouplink[internal|external|mailto]');
-          }
-        }
-        if (rex_addon::get('redactor2')->isAvailable()) {
-          $return = 'redactor';
-          if (!redactor2::profileExists('simple')) {
-                 redactor2::insertProfile('simple', 'Angelegt durch das "Das Modul".', '200', '800', 'relative', '0', '0', '0', '1', 'bold, italic, underline, deleted, quote, sub, sup, code, unorderedlist, orderedlist, grouplink[external|internal|email], cleaner', '');
+  /////////////////////////////////////////////////////////
+  //
+  //  check Editor (MarkitUp / Redactor 2 / CKE5 / Tinymce4)
+  //
+  //////////////////////////////////////////////////////////
+
+    function check_editor()
+    {
+        if (!rex_addon::get('markitup')->isAvailable() && !rex_addon::get('redactor2')->isAvailable() && !rex_addon::get('cke5')->isAvailable() && !rex_addon::get('tinymce4')->isAvailable()) {
+            echo rex_view::error('Dieses Modul ben&ouml;tigt das "MarkItUp", das "Redactor 2", das "CKEditor 5
+" oder das "Tinymce4" Addon!');
+        } else {
+            if (rex_addon::get('markitup')->isAvailable()) {
+                $return = 'markitup';
+                if (!markitup::profileExists('simple')) {
+                    markitup::insertProfile('simple', 'Angelegt durch das Addon: "Das Modul".', 'textile', 200, 800, 'relative', 'bold,italic,underline,deleted,quote,sub,sup,code,unorderedlist, orderedlist, grouplink[internal|external|mailto]');
                 }
             }
-            if (rex_addon::get('cke5')->isAvailable()) {
-                $return = 'cke5';
-                // Hier prüfen on CKE5 vorhanden und ein simples Profil erstellen
+            if (rex_addon::get('redactor2')->isAvailable()) {
+                $return = 'redactor2';
+                if (!redactor2::profileExists('simple')) {
+                    redactor2::insertProfile('simple', 'Angelegt durch das Addon: "Das Modul".', '200', '800', 'relative', '0', '0', '0', '1', 'bold, italic, underline, deleted, quote, sub, sup, code, unorderedlist, orderedlist, grouplink[external|internal|email], cleaner', '');
+                }
+            }
+            if (rex_addon::get('tinymce4')->isAvailable()) {
+                $return = 'tinymce4';
             }
             return $return;
         }
@@ -52,7 +55,7 @@ class rex_das_modul_helper
                       </div>');
         $mform->addSelectField("$id.0.container", array(
             'container'  => 'so breit wie der Inhalt',
-            'fullwidth'  => 'volle Browserbreite'
+            'container-fluid'  => 'volle Browserbreite'
         ), array('label' => 'Breite'));
         echo $mform->show();
     }
@@ -182,13 +185,21 @@ class rex_das_modul_helper
                 'id' => 'value-00' . $id
             ));
         }
-        if ($texteditor == 'redactor') {
+        if ($texteditor == 'redactor2') {
             $mform->addTextAreaField("$id.0.textarea_content", array(
                 'label' => 'Text',
                 'class' => "redactorEditor2-simple",
-                'id' => 'redactor_00' . $id
+                'id' => 'redactor2_00' . $id
             ));
         }
+        if ($texteditor == 'tinymce4') {
+            $mform->addTextAreaField("$id.0.textarea_content", array(
+                'label' => 'Text',
+                'class' => "tinyMCEEditor",
+                'id' => 'tinyMCEEditor_00' . $id
+            ));
+        }
+
     }
 
     function textarea_output($textarea)
@@ -203,7 +214,9 @@ class rex_das_modul_helper
 
             if ($texteditor == 'markitup') {
                 $text = markitup::parseOutput('textile', $textarea);
-            } else if ($texteditor == 'redactor') {
+            } else if ($texteditor == 'redactor2') {
+                $text = html_entity_decode($textarea);
+            } else if ($texteditor == 'tinymce4') {
                 $text = html_entity_decode($textarea);
             }
 
@@ -721,11 +734,11 @@ class rex_das_modul_helper
                 'id' => 'value-00' . $id
             ));
         }
-        if ($texteditor == 'redactor') {
+        if ($texteditor == 'redactor2') {
             $mform->addTextAreaField("$id.0.card_content", array(
                 'label' => 'Text',
                 'class' => "redactorEditor2-simple",
-                'id' => 'redactor_00' . $id
+                'id' => 'redactor2_00' . $id
             ));
         }
 

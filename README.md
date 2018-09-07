@@ -1,29 +1,75 @@
-# Das Modul / Codename: "Gensfleisch 1468" 
-
+## Das Modul // Codename: _Gensfleisch 1468_ 
 
 Dieses AddOn installiert das Modul "0000 - Standard" und die zugehörigen Dateien.
 
+Auf einer Einstellungsseite im Modul kann die jeweile Anordung der Inhalte ausgewählt werden (jederzeit änderbar). Hier gibt es auch die Möglichkeit für diese Section eine individuelle ID und Klassen zu vergeben. Zudem kann für jede Col eine Klasse vergeben werden. Es besteht die Möglickeit zu wählen ob der Container Fluid sein soll. **TESTEN!*
 
+### Installation / Benutzung
+
+- Bei den Ausgaben im Frontend wird das Bootstrap4 Grid benutzt.
+
+### Module (eigentlich Funktionen)
+
+- **0010 - Überschrift** (headline_input / headline_output) 
+Hier kann eine Überschrift eingepflegt werden. Zusätzlich ist die Angabe der "Größe" (H1-H6) ist möglich.  
+
+- **0020 - Text** (textarea_input / textarea_output) 
+Es wird eine Textarea bereitgestellt. Je nach installiertem Editor wird dieser eingebunden. Aktuell funktionieren leider nur die AddOns: _MarkitUp_ und _Tinymce4_ (siehe: https://github.com/FriendsOfREDAXO/redactor2/issues/134)<br/>_Sollten schon Inhalte eingepflegt sein können bei einem Wechsel des Editors alle Formtierungen verloren gehen._ 
+
+- **0030 - Bild** (image_input / image_output)
+Hier kann ein Bild ausgewählt und intern verlinkt werden. **Hierzu gibt es CSS Angaben im "frontend.css"**.
+
+
+- **0040 - Download** (downloads_input / downloads_output)
+**Funktioniert grad nicht**
+
+
+- **0050 - Film (extern)** (video_input / video_output)
+Durch die Angebe eine YouTube bz. Vimeo Film ID kann das Video im Fornten dargestellt werden. Hier sollte noch eine DSGVO gerechte Lösung gefunden werden. **Hierzu gibt es CSS Angaben im "frontend.css"**.
+
+
+
+### Sonstige Funktionen
+
+- **check Editor**
+Hier wird geprüft welcher Editor installiert ist. _Leider unterstützt MBlock den Redactor2 Editor nicht mehr._
+Aktuell funktionieren nur "MarkItUp" und "Tinymce4". Die Unterstützung für den "CKEditor 5" wird evtl. noch eingebaut. 
+
+---
+
+> **Warum _Gensfleisch 1468_**
+>
+> Nun WordPress bekommt jetzt demnächst den "Gutenberg" Editor und die freuen sich grad ´n Ast. Das was der supertolle Gutenberg Editor können wird ist schon lange die Funktionsweise von REDAXO. Nur nicht ganz so fancy. Dieses Modul ermöglicht es dem Redakteur Inhalte modular wie beim Gutenberg Editor zu pflegen. Nur einfacher.  
+>
+> Gutenberg heisst eigentlich "Johannes Gensfleisch" und ist 1468 gestorben...
+
+
+
+
+---
+<br/>
 
 Test Template:
 
 ```
-<!DOCTYPE html>
-<html lang="de">
+<!doctype html>
+<html lang="en">
 <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <title><?php echo htmlspecialchars($this->getValue('name')); ?></title>
-
-    <!-- Load Bootstrap core CSS -->
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./assets/addons/das_modul/css/frontend.css">
 </head>
-
 <body>
-    REX_ARTICLE[]
+
+REX_ARTICLE[]
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </body>
 </html>
-</code>
+
+
+
 ```
