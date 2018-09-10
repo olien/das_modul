@@ -2,7 +2,7 @@
 
 Dieses AddOn installiert das Modul **0000 - Standard** und die zugehörigen Dateien.
 
-Auf einer Einstellungsseite im Modul kann die jeweile Anordung der Inhalte ausgewählt werden (jederzeit änderbar). Hier gibt es auch die Möglichkeit für diese Section eine individuelle ID und Klassen zu vergeben. Zudem kann für jede Col eine Klasse vergeben werden. Es besteht die Möglichkeit zu wählen ob der Container fluid sein soll.
+Auf einer Einstellungsseite im Modul kann die jeweile Anordung der Inhalte ausgewählt werden (jederzeit änderbar). Hier gibt es auch die Möglichkeit für den Container, der Row und den Cols IDs und Klassen zu vergeben. Es besteht auch die Möglichkeit zu wählen ob der Container fluid sein soll.
 
 
 ---
