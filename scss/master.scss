@@ -84,6 +84,8 @@
 
 }
 
+
+
 #das_modul_wrapper #tabs i {
   display: none;
 }
@@ -151,6 +153,8 @@
   height: 38px;
   top: 1px;
   padding-top: 10px;
+  border-radius: 2px 2px 0 0;
+
 }
 
 #das_modul_wrapper .nav-tabs > li.active > a, #das_modul_wrapper .nav-tabs > li.active > a:hover, #das_modul_wrapper .nav-tabs > li.active > a:focus {

@@ -17,7 +17,7 @@ $wrapper[5]     = array( '5', rex_var::toArray( 'REX_VALUE[5]' ) );
 $counter        = 0;
 $reihenfolgeneu = '';
 
-$bsh_input = NEW rex_das_modul_helper();
+$dm_input = NEW rex_das_modul_helper();
 
 
 echo '
@@ -59,22 +59,22 @@ for ( $i = 1; $i <= count( $values ); $i ++ ) {
     ), array( 'label' => '', 'class' => 'elementSelect' ) );
 
 
-    $bsh_input->headline_input(  $id, $mform );
-    $bsh_input->textarea_input(  $id, $mform );
-    $bsh_input->image_input(     $id, $mform );
-    $bsh_input->downloads_input( $id, $mform );
-    $bsh_input->video_input(     $id, $mform );
-    $bsh_input->link_input(      $id, $mform );
-    $bsh_input->card_input(      $id, $mform );
-    $bsh_input->space_input(     $id, $mform );
-    $bsh_input->modal_input(     $id, $mform );
-    $bsh_input->unite_gallery(   $id, $mform );
+    $dm_input->headline_input(  $id, $mform );
+    $dm_input->textarea_input(  $id, $mform );
+    $dm_input->image_input(     $id, $mform );
+    $dm_input->downloads_input( $id, $mform );
+    $dm_input->video_input(     $id, $mform );
+    $dm_input->link_input(      $id, $mform );
+    $dm_input->card_input(      $id, $mform );
+    $dm_input->space_input(     $id, $mform );
+    $dm_input->modal_input(     $id, $mform );
+    $dm_input->unite_gallery(   $id, $mform );
 
     echo MBlock::show( $id, $mform->show() );
     echo '<div class="extra_settings">Weitere Einstellungen<i class="fa fa-arrow-down" aria-hidden="true"></i></div>
         <div class="extra_settings_content">';
 
-    $bsh_input->id_class_input( $id );
+    $dm_input->id_class_input( $id );
 
     echo '</div>
   </div>';
@@ -112,9 +112,9 @@ echo '
           </div>
         </fieldset>
       </div>';
-$bsh_input->container_input( 5 );
-$bsh_input->id_class_input( 5 );
-// $bsh_input->media_manager_typ_input( 5 );
+$dm_input->container_input( 5 );
+$dm_input->id_class_input( 5 );
+// $dm_input->media_manager_typ_input( 5 );
 echo '
   </div>
 </div>';

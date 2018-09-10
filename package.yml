@@ -3,7 +3,7 @@ version: '0.0-alpha'
 author: Oliver Kreischer
 supportpage: ...
 kurzbeschreibung: 'REDAXO Modul'
-compile: 0
+compile: 1
 
 requires:
     redaxo: '^5.6'

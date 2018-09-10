@@ -40,9 +40,9 @@ $values[3]                  = rex_var::toArray( 'REX_VALUE[3]' );
 $values[4]                  = rex_var::toArray( 'REX_VALUE[4]' );
 $values[5]                  = rex_var::toArray( 'REX_VALUE[5]' );
 
-$bsh_output                 = NEW rex_das_modul_helper();
+$dm_output                 = NEW rex_das_modul_helper();
 
-$debug                      = false;
+$debug                     = false;
 
 if ( rex::isBackend() ) {
     $coreVersion = rex_config::get( 'core', 'version' );
@@ -103,44 +103,44 @@ foreach ( $reihenfolge as $nummer ) {
         foreach ( $value as $val ) {
             switch ( $val['element'] ) {
                 case 'headline':
-                    $html_block[$zaehler] .= $bsh_output->headline_output( $val['headline_text'], $val['headline_size'] );
-                    $outback[]             = $bsh_output->headline_output( $val['headline_text'], $val['headline_size'] );
+                    $html_block[$zaehler] .= $dm_output->headline_output( $val['headline_text'], $val['headline_size'] );
+                    $outback[]             = $dm_output->headline_output( $val['headline_text'], $val['headline_size'] );
                     break;
                 case 'textarea':
-                    $html_block[$zaehler] .= $bsh_output->textarea_output( $val['textarea_content'] );
-                    $outback[]             = $bsh_output->textarea_output( $val['textarea_content'] );
+                    $html_block[$zaehler] .= $dm_output->textarea_output( $val['textarea_content'] );
+                    $outback[]             = $dm_output->textarea_output( $val['textarea_content'] );
                     break;
                 case 'downloads':
-                    $html_block[$zaehler] .= $bsh_output->downloads_output( $val['downloads_headline'],$val['REX_MEDIALIST_1'] );
-                    $outback[]             = $bsh_output->downloads_output( $val['downloads_headline'],$val['REX_MEDIALIST_1'] );
+                    $html_block[$zaehler] .= $dm_output->downloads_output( $val['downloads_headline'],$val['REX_MEDIALIST_1'] );
+                    $outback[]             = $dm_output->downloads_output( $val['downloads_headline'],$val['REX_MEDIALIST_1'] );
                     break;
                 case 'link':
-                    $html_block[$zaehler] .= $bsh_output->link_output( $val['link_name'],$val['link_extern'],$val['REX_LINK_1'],$val['link_type'],$val['link_class'] );
-                    $outback[]             = $bsh_output->link_output( $val['link_name'],$val['link_extern'],$val['REX_LINK_1'],$val['link_type'],$val['link_class'] );
+                    $html_block[$zaehler] .= $dm_output->link_output( $val['link_name'],$val['link_extern'],$val['REX_LINK_1'],$val['link_type'],$val['link_class'] );
+                    $outback[]             = $dm_output->link_output( $val['link_name'],$val['link_extern'],$val['REX_LINK_1'],$val['link_type'],$val['link_class'] );
                     break;
                 case 'video':
-                    $html_block[$zaehler] .= $bsh_output->video_output( $val['video_id'],$val['video_service'] );
-                    $outback[]             = $bsh_output->video_output( $val['video_id'],$val['video_service'] );
+                    $html_block[$zaehler] .= $dm_output->video_output( $val['video_id'],$val['video_service'] );
+                    $outback[]             = $dm_output->video_output( $val['video_id'],$val['video_service'] );
                     break;
                 case 'card':
-                    $html_block[$zaehler] .= $bsh_output->card_output( $val['REX_MEDIA_1'],$val['card_title'],$val['card_content'],$val['REX_LINK_1'],$val['card_link_title'] );
-                    $outback[]             = $bsh_output->card_output( $val['REX_MEDIA_1'],$val['card_title'],$val['card_content'],$val['REX_LINK_1'],$val['card_link_title'] );
+                    $html_block[$zaehler] .= $dm_output->card_output( $val['REX_MEDIA_1'],$val['card_title'],$val['card_content'],$val['REX_LINK_3'],$val['card_link_title'] );
+                    $outback[]             = $dm_output->card_output( $val['REX_MEDIA_1'],$val['card_title'],$val['card_content'],$val['REX_LINK_3'],$val['card_link_title'] );
                     break;
                 case 'image':
-                    $html_block[$zaehler] .= $bsh_output->image_output( $val['REX_MEDIA_2'],$val['REX_LINK_2'] );
-                    $outback[]             = $bsh_output->image_output( $val['REX_MEDIA_2'],$val['REX_LINK_2'] );
+                    $html_block[$zaehler] .= $dm_output->image_output( $val['REX_MEDIA_2'],$val['REX_LINK_2'] );
+                    $outback[]             = $dm_output->image_output( $val['REX_MEDIA_2'],$val['REX_LINK_2'] );
                     break;
                 case 'space':
-                    $html_block[$zaehler] .= $bsh_output->space_output( $val['space_size'],$val['space_line'],$val['space_image'] );
-                    $outback[]             = $bsh_output->space_output( $val['space_size'],$val['space_line'],$val['space_image'] );
+                    $html_block[$zaehler] .= $dm_output->space_output( $val['space_size'],$val['space_line'],$val['space_image'] );
+                    $outback[]             = $dm_output->space_output( $val['space_size'],$val['space_line'],$val['space_image'] );
                     break;
                 case 'artikel_modal':
-                    $html_block[$zaehler] .= $bsh_output->modal_output( $val['modal_headline'],$val['REX_LINK_1'],$val['modal_link_bezeichnung'],$val['modal_link_type'], $val['modal_print']);
-                    $outback[]             = $bsh_output->modal_output( $val['modal_headline'],$val['REX_LINK_1'],$val['modal_link_bezeichnung'],$val['modal_link_type'], $val['modal_print'] );
+                    $html_block[$zaehler] .= $dm_output->modal_output( $val['modal_headline'],$val['REX_LINK_1'],$val['modal_link_bezeichnung'],$val['modal_link_type'], $val['modal_print']);
+                    $outback[]             = $dm_output->modal_output( $val['modal_headline'],$val['REX_LINK_1'],$val['modal_link_bezeichnung'],$val['modal_link_type'], $val['modal_print'] );
                     break;
                 case 'unite_gallery':
-                    $html_block[$zaehler] .= $bsh_output->unite_gallery_output( $val['REX_MEDIALIST_1'],$val['unite_gallery_art'],$val['unite_gallery_img_width'],$val['unite_gallery_img_height']);
-                    $outback[]             = $bsh_output->unite_gallery_output( $val['REX_MEDIALIST_1'],$val['unite_gallery_art'],$val['unite_gallery_img_width'],$val['unite_gallery_img_height']);
+                    $html_block[$zaehler] .= $dm_output->unite_gallery_output( $val['REX_MEDIALIST_1'],$val['unite_gallery_art'],$val['unite_gallery_img_width'],$val['unite_gallery_img_height']);
+                    $outback[]             = $dm_output->unite_gallery_output( $val['REX_MEDIALIST_1'],$val['unite_gallery_art'],$val['unite_gallery_img_width'],$val['unite_gallery_img_height']);
                     break;
             }
         }

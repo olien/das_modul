@@ -1,3 +1,398 @@
+// @method: prefixer
+// @usage: @include prefixer(border-radius, 10px, webkit moz ms o spec);
+// @syntax: property, value, prefixes
+
+@mixin prefixer($property, $value, $prefixes: spec) {
+  @each $prefix in $prefixes {
+    @if $prefix == webkit {
+      -webkit-#{$property}: $value;
+    } @else if $prefix == moz {
+      -moz-#{$property}: $value;
+    } @else if $prefix == ms {
+      -ms-#{$property}: $value;
+    } @else if $prefix == khtml {
+      -khtml-#{$property}: $value;
+    } @else if $prefix == o {
+      -o-#{$property}: $value;
+    } @else if $prefix == spec {
+      #{$property}: $value;
+    } @else {
+      @warn "Unrecognized prefix: #{$prefix}";
+    }
+  }
+}
+
+// @method: value-prefixer
+// @usage: @include value-prefixer(display, box, webkit moz ms spec);
+// @syntax: property, value, prefixes
+
+@mixin value-prefixer($property, $value, $prefixes: spec) {
+  @each $prefix in $prefixes {
+    @if $prefix == webkit {
+      #{$property}: -webkit-#{$value};
+    } @else if $prefix == moz {
+      #{$property}: -moz-#{$value};
+    } @else if $prefix == ms {
+      #{$property}: -ms-#{$value};
+    } @else if $prefix == khtml {
+      #{$property}: -khtml-#{$value};
+    } @else if $prefix == o {
+      #{$property}: -o-#{$value};
+    } @else if $prefix == spec {
+      #{$property}: $value;
+    } @else {
+      @warn "Unrecognized prefix: #{$prefix}";
+    }
+  }
+}
+
+
+// forked from git.io/1dMSeg
+
+// @method: transform
+// @usage: @include transform(scale(0));
+// @syntax: none|<transform-function>|initial|inherit
+
+@mixin transform($property: none) {
+  @include prefixer(transform, $property, webkit moz ms o spec);
+}
+
+// @method: transform-origin
+// @usage: @include transform(20% top);
+// @syntax: x-axis-left|center|right|length|%
+//          y-axis-top|center|bottom|length|%
+//          z-axis-                  length
+
+@mixin transform-origin($axes: 50%) {
+  @include prefixer(transform-origin, $axes, webkit moz ms o spec);
+}
+
+// @method: transform-origin
+// @usage: @include transform-style(preserve-3d);
+// @syntac: flat|preserve-3d|initial|inherit
+
+@mixin transform-style($style: flat) {
+  @include prefixer(transform-style, $style, webkit moz ms o spec);
+}
+
+
+// forked from git.io/1dMSeg
+
+// @method: transition
+// @usage: @include transition (all 2s ease-in-out);
+//         @include transition (opacity 1s ease-in 2s, width 2s ease-out);
+// Shorthand mixin. Supports multiple parentheses-deliminated values for each variable.
+
+@mixin transition($properties...) {
+  // Fix for vendor-prefix transform property
+  $needs-prefixes: false;
+  $webkit: ();
+  $moz: ();
+  $spec: ();
+
+  // Create lists for vendor-prefixed transform
+  @each $list in $properties {
+    @if nth($list, 1) == "transform" {
+      $needs-prefixes: true;
+      $list1: -webkit-transform;
+      $list2: -moz-transform;
+      $list3: ();
+
+      @each $var in $list {
+        $list3: join($list3, $var);
+
+        @if $var != "transform" {
+          $list1: join($list1, $var);
+          $list2: join($list2, $var);
+        }
+      }
+
+      $webkit: append($webkit, $list1);
+      $moz: append($moz, $list2);
+      $spec: append($spec, $list3);
+    }
+
+      // Create lists for non-prefixed transition properties
+    @else {
+      $webkit: append($webkit, $list, comma);
+      $moz: append($moz, $list, comma);
+      $spec: append($spec, $list, comma);
+    }
+  }
+
+  @if $needs-prefixes {
+    -webkit-transition: $webkit;
+    -moz-transition: $moz;
+    transition: $spec;
+  } @else {
+    @if length($properties) >= 1 {
+      @include prefixer(transition, $properties, webkit moz spec);
+    } @else {
+      $properties: all 0.15s ease-out 0s;
+      @include prefixer(transition, $properties, webkit moz spec);
+    }
+  }
+}
+
+// @method: transition-property
+// @usage: @include transition-property (transform, opacity);
+
+@mixin transition-property($properties...) {
+  -webkit-transition-property: transition-property-names($properties, 'webkit');
+  -moz-transition-property: transition-property-names($properties, 'moz');
+  transition-property: transition-property-names($properties, false);
+}
+
+// @method: transition-duration
+// @usage: @include transition-duration();
+
+@mixin transition-duration($times...) {
+  @include prefixer(transition-duration, $times, webkit moz spec);
+}
+
+// @method: transition-timing-function
+// @usage: @include transition-timing-function(linear);
+// @syntax: ease|linear|ease-in|ease-out|ease-in-out|cubic-bezier()
+
+@mixin transition-timing-function($motions...) {
+  @include prefixer(transition-timing-function, $motions, webkit moz spec);
+}
+
+// @method: transition-delay
+// @usage: @include transition-delay(10);
+// @syntax: <numeric>
+
+@mixin transition-delay($times...) {
+  @include prefixer(transition-delay, $times, webkit moz spec);
+}
+
+
+// @method: border-radius
+// @usage: @include border-radius(10px);
+// @usage: @include border-radius(10px, 10px, border-top-right-radius);
+// @syntax: radius-width,radius-vertical-width,property
+
+@mixin border-radius($default-radius, $vertical-radius: false, $property: border-radius) {
+  @if $vertical-radius {
+    @include prefixer($property, $default-radius, webkit moz spec);
+    @include prefixer($property, $default-radius unquote("/") $vertical-radius, moz khtml);
+  } @else {
+    @include prefixer($property, $default-radius, webkit moz spec);
+  }
+}
+
+// @method: border-top-radius
+// @usage: @include border-top-radius(10px);
+// @syntax: radius-width,radius-vertical-width
+
+@mixin border-top-radius($default-radius, $vertical-radius: false) {
+  @include border-radius($default-radius, $vertical-radius, border-top-left-radius);
+  @include border-radius($default-radius, $vertical-radius, border-top-right-radius);
+}
+
+// @method: border-right-radius
+// @usage: @include border-right-radius(10px);
+// @syntax: radius-width,radius-vertical-width
+
+@mixin border-right-radius($default-radius, $vertical-radius: false) {
+  @include border-radius($default-radius, $vertical-radius, border-top-right-radius);
+  @include border-radius($default-radius, $vertical-radius, border-bottom-right-radius);
+}
+
+// @method: border-bottom-radius
+// @usage: @include border-bottom-radius(10px);
+// @syntax: radius-width,radius-vertical-width
+
+@mixin border-bottom-radius($default-radius, $vertical-radius: false) {
+  @include border-radius($default-radius, $vertical-radius, border-bottom-left-radius);
+  @include border-radius($default-radius, $vertical-radius, border-bottom-right-radius);
+}
+
+// @method: border-left-radius
+// @usage: @include border-left-radius(10px);
+// @syntax: radius-width,radius-vertical-width
+
+@mixin border-left-radius($default-radius, $vertical-radius: false) {
+  @include border-radius($default-radius, $vertical-radius, border-top-left-radius);
+  @include border-radius($default-radius, $vertical-radius, border-bottom-left-radius);
+}
+
+// @method: border-top-left-radius
+// @usage: @include border-top-left-radius(10px);
+// @syntax: radius-width,radius-vertical-width
+
+@mixin border-top-left-radius($default-radius, $vertical-radius: false) {
+  @include border-radius($default-radius, $vertical-radius, border-top-left-radius);
+}
+
+// @method: border-top-right-radius
+// @usage: @include border-top-right-radius(10px);
+// @syntax: radius-width,radius-vertical-width
+
+@mixin border-top-right-radius($default-radius, $vertical-radius: false) {
+  @include border-radius($default-radius, $vertical-radius, border-top-right-radius);
+}
+
+// @method: border-bottom-left-radius
+// @usage: @include border-bottom-left-radius(10px);
+// @syntax: radius-width,radius-vertical-width
+
+@mixin border-bottom-left-radius($default-radius, $vertical-radius: false) {
+  @include border-radius($default-radius, $vertical-radius, border-bottom-left-radius);
+}
+
+// @method: border-bottom-right-radius
+// @usage: @include border-bottom-right-radius(10px);
+// @syntax: radius-width,radius-vertical-width
+
+@mixin border-bottom-right-radius($default-radius, $vertical-radius: false) {
+  @include border-radius($default-radius, $vertical-radius, border-bottom-right-radius);
+}
+
+// @method: border-image
+// @usage: @include border-image(image:url(border.png) 30 30 round);
+// @syntax: source slice width outset repeat|initial|inherit
+
+// @mixin border-image ($image)
+// {
+//     @include prefixer(border-image, $image, webkit moz o spec);
+// }
+
+// forked from git.io/1dMSeg
+
+// @method: border-image
+// @usage: @include border-image(image:url(border.png) 30 30 round);
+//         @include border-image(url("image.png"));
+//         @include border-image(url("image.png") 20 stretch);
+//         @include border-image(linear-gradient(45deg, orange, yellow));
+//         @include border-image(linear-gradient(45deg, orange, yellow) stretch);
+//         @include border-image(linear-gradient(45deg, orange, yellow) 20 30 40 50 stretch round);
+//         @include border-image(radial-gradient(top, cover, orange, yellow, orange));
+
+@mixin border-image($borders...) {
+  $webkit-borders: ();
+  $spec-borders: ();
+
+  @each $border in $borders {
+    $webkit-border: ();
+    $spec-border: ();
+    $border-type: type-of($border);
+
+    @if $border-type == string or list {
+      $border-str: if($border-type == list, nth($border, 1), $border);
+
+      $url-str: str-slice($border-str, 0, 3);
+      $gradient-type: str-slice($border-str, 0, 6);
+
+      @if $url-str == "url" {
+        $webkit-border: $border;
+        $spec-border: $border;
+      } @else if $gradient-type == "linear" {
+        $gradients: _linear-gradient-parser("#{$border}");
+        $webkit-border: map-get($gradients, webkit-image);
+        $spec-border: map-get($gradients, spec-image);
+      } @else if $gradient-type == "radial" {
+        $gradients: _radial-gradient-parser("#{$border}");
+        $webkit-border: map-get($gradients, webkit-image);
+        $spec-border: map-get($gradients, spec-image);
+      } @else {
+        $webkit-border: $border;
+        $spec-border: $border;
+      }
+    } @else {
+      $webkit-border: $border;
+      $spec-border: $border;
+    }
+
+    $webkit-borders: append($webkit-borders, $webkit-border, comma);
+    $spec-borders: append($spec-borders, $spec-border, comma);
+  }
+
+  -webkit-border-image: $webkit-borders;
+  border-image: $spec-borders;
+  border-style: solid;
+}
+
+
+
+// @method: .unset-distances
+// @usage: @include unset-distances;
+
+@mixin unset-distances() {
+  margin: 0;
+  padding: 0;
+}
+
+// @method: .unset-list
+// @usage: @include unset-list;
+
+@mixin unset-list() {
+  @include unset-distances;
+  list-style: none;
+
+  li {
+    @include unset-distances;
+  }
+}
+
+// @method: .unset-outline
+// @usage: @include unset-outline;
+
+@mixin unset-outline() {
+  outline: 0 none !important;
+
+  &:hover,
+  &:focus,
+  &:visited,
+  &:active {
+    outline: 0 none !important;
+  }
+  &::-moz-focus-inner {
+    border: 0 solid transparent;
+  }
+}
+
+// @method: .unset-grid-column
+// @usage: @include unset-grid-column;
+
+@mixin unset-grid-column() {
+  margin-left: 0;
+  padding-left: 0;
+  padding-right: 0;
+  width: auto;
+  float: inherit;
+  display: block;
+}
+
+// @method: .unset-grid-offset
+// @usage: @include unset-grid-offset;
+
+@mixin unset-grid-offset() {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+// @method: .unset-grid-row
+// @usage: @include unset-grid-row;
+
+@mixin unset-grid-row() {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+// @method: .unset-grid-wrapper
+// @usage: @include unset-grid-wrapper;
+
+@mixin unset-grid-wrapper() {
+  width: auto;
+}
+
+
+/***************************
+*
+*
+*
+*/
 
 // Image
 .das_modul {
@@ -25,5 +420,148 @@
     padding-top: 0px;
     height: 0;
     overflow: hidden;
+  }
+}
+
+// Cards
+
+.das_modul {
+  .card {
+    position: relative;
+    background-color: #fff;
+    text-align: left;
+    box-shadow: 0 1px 30px rgba(0, 0, 0, .1);
+    border: 1px solid #ddd;
+    overflow: hidden;
+    @include transition (all 0.25s ease-in-out);
+    @include unset-distances;
+    @include border-radius(6px);
+    a {
+      @include unset-distances;
+      text-decoration: none;
+    }
+    .card-img {
+      overflow: hidden;
+      @include unset-distances;
+      padding-bottom: -10px !important;
+      @include border-radius(3px);
+      img {
+        @include transition (all 0.2s ease-in-out);
+        display: block;
+        width: 100%;
+        height: auto;
+      }
+    }
+    .card-caption {
+      @include border-radius(3px);
+      position: relative;
+      margin: -2rem 1rem 0 1rem;
+      background: #fff;
+      padding-bottom: 2rem;
+      height: auto;
+      &.noimage {
+        margin-top: 0;
+      }
+    }
+
+    a {
+      color: #000;
+    }
+
+    h5 {
+      @include unset-distances;
+      font-size: 1rem;
+      padding: 12px 8px 0 16px;
+    }
+    p {
+      font-size: 0.75rem;
+      padding: 8px 16px 0 16px;
+    }
+
+    .readmore {
+      font-size: 0.50rem;
+      position: absolute;
+      bottom: 16px;
+      right: 32px;
+      font-weight: bold;
+      color: #000;
+      @include unset-distances;
+      &:after {
+        float: right;
+        font-size: 0.50rem;
+        margin: 0px 0 0 6px;
+        font-family: 'FontAwesome';
+        content: "\f105";
+      }
+      &:before {
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 1px;
+        bottom: -2px;
+        left: 0;
+        background-color: #000;
+        visibility: hidden;
+        -webkit-transform: scaleX(0);
+        transform: scaleX(0);
+        -webkit-transition: all 0.25s ease-in-out 0s;
+        transition: all 0.25s ease-in-out 0s;
+      }
+    }
+
+  }
+
+  #content .card:hover,
+  .card:hover {
+    box-shadow: 0 10px 50px rgba(0, 0, 0, .2);
+    .card-img {
+      img {
+        @include transition (all 0.2s ease-in-out);
+        @include transform(scale(1.15));
+      }
+    }
+
+    .readmore {
+      color: #000;
+      &:before {
+        visibility: visible;
+        -webkit-transform: scaleX(1);
+        transform: scaleX(1);
+      }
+    }
+  }
+
+  @media (max-width: 576px) {
+    .card {
+      @include unset-distances;
+      .card-img {
+        @include unset-distances;
+        width: calc(35% - 6px);
+        padding: 6px 0 0 6px;
+        float: left;
+        img {
+          display: inline-block;
+        }
+
+      }
+      .card-caption {
+        width: 65%;
+        float: right;
+        margin: 0;
+        h5 {
+          padding: 16px 16px 0 16px;
+        }
+        p {
+          padding: 0 16px 0 16px;
+        }
+      }
+    }
+    #content .card:hover {
+      .card-img {
+        img {
+          @include transform(scale(1.0));
+        }
+      }
+    }
   }
 }

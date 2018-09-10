@@ -14,7 +14,7 @@ Auf einer Einstellungsseite im Modul kann die jeweile Anordung der Inhalte ausge
 ---
 ### Module (eigentlich Funktionen)
 
-**0010 - Überschrift** (headline_input / headline_output)
+**0010 - Überschrift** (headline_input / headline_output) 
 Hier kann eine Überschrift eingepflegt werden. Zusätzlich ist die Angabe der "Größe" (H1-H6) ist möglich.
 
 **0020 - Text** (textarea_input / textarea_output)
@@ -43,11 +43,16 @@ Durch die Angebe eine YouTube bz. Vimeo Film ID kann das Video im Fornten darges
 
 
 
-
 ### Sonstige Funktionen
 
 - **check Editor**
 Hier wird geprüft welcher Editor installiert ist. _Leider unterstützt MBlock den Redactor2 Editor nicht mehr._ Aktuell funktionieren nur "MarkItUp" und "Tinymce4". Die Unterstützung für den "CKEditor 5" wird evtl. noch eingebaut. 
+
+- **container_input / container_output**
+Funktion um die "Breite" des Containers zu definieren. 
+
+- **id_class_input**
+Funktion für die Eingaben der Klassen und IDs
 
 ---
 

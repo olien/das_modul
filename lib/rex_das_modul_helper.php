@@ -339,7 +339,10 @@ class rex_das_modul_helper
               </div>');
 
         $mform->addTextField("$id.0.downloads_headline", array('label' => 'Überschrift'));
-        $mform->addMedialistField(1, array('label' => 'Dateien'));
+        // $mform->addMedialistField(1, array('label' => 'Dateien'));
+        $mform->addMedialistField(1, array('types'=>'gif,jpg','preview'=>1), 1, array('label'=>'Label Name'));
+
+
     }
 
     function downloads_output($downloads_headline, $REX_MEDIALIST_1)
@@ -396,8 +399,6 @@ class rex_das_modul_helper
                         }
                     }
                 }
-
-
                 $arr = explode(",", $REX_MEDIALIST_1);
                 $download_be_dateien = '';
                 $download_fe_dateien = '';
@@ -435,8 +436,6 @@ class rex_das_modul_helper
             return implode($be_output);
         }
     }
-
-
 
 
 ////////////////////////////////////
@@ -576,6 +575,7 @@ class rex_das_modul_helper
 
         $mform->addMediaField(2, array('label' => 'Bild'));
         $mform->addLinkField(2, array('label' => 'Link intern'));
+
     }
 
     function image_output($image, $link)
@@ -631,7 +631,6 @@ class rex_das_modul_helper
             if ($copyright != '') {
                 $fe_output[] = '<div class="copyright">{{ Copyright}} ' . $copyright . '</div>';
             }
-
         }
         if (!rex::isBackend()) {
             return implode($fe_output);
@@ -754,7 +753,7 @@ class rex_das_modul_helper
             ));
         }
 
-        $mform->addLinkField(1, array('label' => 'Link intern'));
+        $mform->addLinkField(3, array('label' => 'Link intern'));
         $mform->addTextField("$id.0.card_link_title", array( 'label' => 'Bezeichnung'));
     }
 
