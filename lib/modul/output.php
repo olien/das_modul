@@ -128,9 +128,7 @@ foreach ( $reihenfolge as $nummer ) {
                     break;
                 case 'image':
                     $html_block[$zaehler] .= $bsh_output->image_output( $val['REX_MEDIA_2'],$val['REX_LINK_2'] );
-                    $outback[]             = $bsh_output->image_output( $val['REX_MEDIA_2'],$val['REX_LINK_2'] );        $mform->addHtml('<div class="col-sm-12">');
-                    $mform->addTextField("$id.0.row_class", array('label' => 'Row Klasse(n)'));
-                    $mform->addHtml('</div><div class="col-sm-12">');
+                    $outback[]             = $bsh_output->image_output( $val['REX_MEDIA_2'],$val['REX_LINK_2'] );
                     break;
                 case 'space':
                     $html_block[$zaehler] .= $bsh_output->space_output( $val['space_size'],$val['space_line'],$val['space_image'] );
@@ -214,7 +212,7 @@ foreach ( $values[5] as $val ) {
           </div>
         ';
     }
-    if ( isset($val['container_id'])) {
+    if ($val['container_id']!='') {
         $container_id = 'id="'.$val['container_id'].'"';
         $outback[] = '
           <div class="form-group">
@@ -225,7 +223,7 @@ foreach ( $values[5] as $val ) {
           </div>
         ';
     }
-    if ( isset($val['row_class'])) {
+    if ($val['row_class']!='') {
         $row_class = $val['row_class'];
         $outback[] = '
          <div class="form-group">
@@ -236,7 +234,7 @@ foreach ( $values[5] as $val ) {
          </div>
        ';
     }
-    if ( isset($val['col_class'])) {
+    if ($val['col_class']!='') {
         $col_class = $val['col_class'];
         $outback[] = '
          <div class="form-group">
