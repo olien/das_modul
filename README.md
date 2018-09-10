@@ -22,18 +22,22 @@ Es wird eine Textarea bereitgestellt. Je nach installiertem Editor wird dieser e
 
 
 **0030 - Bild** (image_input / image_output)
-Hier kann ein Bild ausgewählt und intern verlinkt werden. **CSS benötigt**.  
-  
+Hier kann ein Bild ausgewählt und intern verlinkt werden.
+*CSS: ./assets/addons/das_modul/css/image.css*  
+
 **0040 - Download** (downloads_input / downloads_output)
 **Funktioniert grad nicht**.  
  
 **0050 - Film (extern)** (video_input / video_output)
-Durch die Angebe eine YouTube bz. Vimeo Film ID kann das Video im Fornten dargestellt werden. Hier sollte noch eine DSGVO gerechte Lösung gefunden werden. **CSS benötigt**.  
+Durch die Angebe eine YouTube bz. Vimeo Film ID kann das Video im Fornten dargestellt werden. Hier sollte noch eine DSGVO gerechte Lösung gefunden werden.
+*CSS: ./assets/addons/das_modul/css/video.css*
+
 
 **0060 - Link (intern / extern)** (link_input / link_output)
 Durch die Angebe eine YouTube bz. Vimeo Film ID kann das Video im Fornten dargestellt werden. Hier sollte noch eine DSGVO gerechte Lösung gefunden werden. **CSS benötigt**.
 
 **0070 - Card (Teaser)**
+Ermöglicht es eine CARD auszugeben (Bild, Text, interner Link). **CSS benötigt**.  
 
 **0080 - Abstand einfügen**
 
