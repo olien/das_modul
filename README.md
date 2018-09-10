@@ -2,7 +2,7 @@
 
 Dieses AddOn installiert das Modul **0000 - Standard** und die zugehörigen Dateien.
 
-Auf einer Einstellungsseite im Modul kann die jeweile Anordung der Inhalte ausgewählt werden (jederzeit änderbar). Hier gibt es auch die Möglichkeit für diese Section eine individuelle ID und Klassen zu vergeben. Zudem kann für jede Col eine Klasse vergeben werden. Es besteht die Möglichkeit zu wählen ob der Container Fluid sein soll. **NOCHMALTESTEN!**
+Auf einer Einstellungsseite im Modul kann die jeweile Anordung der Inhalte ausgewählt werden (jederzeit änderbar). Hier gibt es auch die Möglichkeit für diese Section eine individuelle ID und Klassen zu vergeben. Zudem kann für jede Col eine Klasse vergeben werden. Es besteht die Möglichkeit zu wählen ob der Container Fluid sein soll.
 
 
 ---
@@ -21,8 +21,8 @@ Hier kann eine Überschrift eingepflegt werden. Zusätzlich ist die Angabe der "
 Es wird eine Textarea bereitgestellt. Je nach installiertem Editor wird dieser eingebunden. Aktuell funktionieren leider nur die AddOns: _MarkitUp_ und _Tinymce4_ (siehe: https://github.com/FriendsOfREDAXO/redactor2/issues/134)<br/>_Sollten schon Inhalte eingepflegt sein können bei einem Wechsel des Editors alle Formtierungen verloren gehen._
 
 
-**0030 - Bild** (image_input / image_output)
-Hier kann ein Bild ausgewählt und intern verlinkt werden.
+**0030 - Bild** (image_input / image_output)<br/>
+Hier kann ein Bild ausgewählt und intern verlinkt werden.<br/>
 *CSS: ./assets/addons/das_modul/css/image.css*  
 
 **0040 - Download** (downloads_input / downloads_output)
