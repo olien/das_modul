@@ -96,9 +96,9 @@ class rex_das_modul_helper
                         <p><em>Sollten Sie nicht sehr genau wissen was damit gemeint ist fragen Sie Ihren Webentwickler.</em></p>
                       </div>');
         $mform->addHtml('<div class="col-sm-12">');
-        $mform->addTextField("$id.0.class", array('label' => 'Section Klasse(n)'));
-        $mform->addHtml('</div><div class="col-sm-12">');
         $mform->addTextField("$id.0.id_value", array('label' => 'Section ID'));
+        $mform->addHtml('</div><div class="col-sm-12">');
+        $mform->addTextField("$id.0.class", array('label' => 'Section Klasse(n)'));
         $mform->addHtml('</div><div class="col-sm-12">');
         $mform->addTextField("$id.0.grid_class", array('label' => 'Grid Klasse(n)'));
         $mform->addHtml('</div>');
