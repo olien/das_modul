@@ -10,9 +10,9 @@ $nummer                     = '';
 $fullwidth                  = '';
 $sectionclass               = '';
 
-$wrapper_id                 = '';
-$wrapper_class              = '';
-$grid_class                 = '';
+$container_id               = '';
+$row_class                  = '';
+$col_class                  = '';
 
 $values                     = array();
 $out                        = '';
@@ -97,9 +97,9 @@ foreach ( $reihenfolge as $nummer ) {
         }
 
         $outback[] = '
-      <div class="mblock_wrapper outback">
+      <div class="outback das_modul_wrapper">
         <legend>Bereich ' . $zaehler . '</legend>
-        <fieldset class="form-horizontal">';
+        <fieldset class="form-horizomtal ">';
         foreach ( $value as $val ) {
             switch ( $val['element'] ) {
                 case 'headline':
@@ -128,7 +128,9 @@ foreach ( $reihenfolge as $nummer ) {
                     break;
                 case 'image':
                     $html_block[$zaehler] .= $bsh_output->image_output( $val['REX_MEDIA_2'],$val['REX_LINK_2'] );
-                    $outback[]             = $bsh_output->image_output( $val['REX_MEDIA_2'],$val['REX_LINK_2'] );
+                    $outback[]             = $bsh_output->image_output( $val['REX_MEDIA_2'],$val['REX_LINK_2'] );        $mform->addHtml('<div class="col-sm-12">');
+                    $mform->addTextField("$id.0.row_class", array('label' => 'Row Klasse(n)'));
+                    $mform->addHtml('</div><div class="col-sm-12">');
                     break;
                 case 'space':
                     $html_block[$zaehler] .= $bsh_output->space_output( $val['space_size'],$val['space_line'],$val['space_image'] );
@@ -147,46 +149,47 @@ foreach ( $reihenfolge as $nummer ) {
 
         foreach ( $value as $val ) {
 
-            if (isset($val['class'])) {
-                if ($val['class'] != '') {
-                    $individuelle_css_klasse[$zaehler] = ' ' . $val['class'];
+            if (isset($val['col_class'])) {
+                if ($val['col_class'] != '') {
+                    $individuelle_css_klasse[$zaehler] = ' ' . $val['col_class'];
                 } else {
                     $individuelle_css_klasse[$zaehler] = '';
                 }
             }
-            if (isset($val['id_value'])) {
-                if ($val['id_value'] != '') {
-                    $individuelle_css_id[$zaehler] = ' id="' . $val['id_value'] . '"';
+            if (isset($val['col_id'])) {
+                if ($val['col_id'] != '') {
+                    $individuelle_css_id[$zaehler] = ' id="' . $val['col_id'] . '"';
                 } else {
                     $individuelle_css_id[$zaehler] = '';
                 }
             }
 
-            if ( isset( $val['id_value'], $val['class'] ) ) {
-                if ( $val['id_value'] != '' OR $val['class'] != '' ) {
+            if ( isset( $val['col_id'], $val['col_class'] ) ) {
+                if ( $val['col_id'] != '' OR $val['col_class'] != '' ) {
                     $outback[] = '<legend>Individuelle Einstellungen</legend>';
                 }
-                if ( $val['id_value'] != '' ) {
+                if ( $val['col_id'] != '' ) {
+
                     $outback[] = '
-                <div class="form-group">
-                  <label class="col-sm-3 label_left">ID</label>
-                  <div class="col-sm-9">
-                    ' . $val['id_value'] . '
+                  <div class="form-group container">
+                  <label class="col-sm-3 label_left">Col ID</label>
+                      <div class="col-sm-9">
+                        ' . $val['col_id'] . '
+                      </div>
                   </div>
-                </div>
               ';
                 }
-                if ( $val['class'] != '' ) {
+                if ( $val['col_class'] != '' ) {
                     $outback[] = '
-                <div class="form-group">
-                  <label class="col-sm-3 label_left">Klasse</label>
-                  <div class="col-sm-9">
-                    ' . $val['class'] . '
-                  </div>
-                </div>
-              ';
+                  <div class="form-group container">
+                  <label class="col-sm-3 label_left">Col Klasse(n)</label>
+                      <div class="col-sm-9">
+                        '.$val['col_class'].' 
+                      </div>
+                  </div>';
                 }
             }
+
         }
         $outback[] = '
         </fieldset>
@@ -196,7 +199,7 @@ foreach ( $reihenfolge as $nummer ) {
 }
 
 $outback[] = '
-  <div class="mblock_wrapper outback more_settings">
+  <div class="das_modul_wrapper outback more_settings">
     <legend>Weitere Modul Einstellungen</legend>
     <fieldset class="form-horizontal">';
 foreach ( $values[5] as $val ) {
@@ -211,35 +214,35 @@ foreach ( $values[5] as $val ) {
           </div>
         ';
     }
-    if ( $val['id_value'] != '' ) {
-        $wrapper_id = 'id="'.$val['id_value'].'"';
+    if ( isset($val['container_id'])) {
+        $container_id = 'id="'.$val['container_id'].'"';
         $outback[] = '
           <div class="form-group">
             <label class="col-sm-3 label_left">Container ID</label>
             <div class="col-sm-9">
-              ' . $val['id_value'] . '
+              ' . $val['container_id'] . '
             </div>
           </div>
         ';
     }
-    if ( $val['class'] != '' ) {
-        $wrapper_class = $val['class'];
+    if ( isset($val['row_class'])) {
+        $row_class = $val['row_class'];
         $outback[] = '
          <div class="form-group">
-         <label class="col-sm-3 label_left">Container Klasse(n)</label>
+         <label class="col-sm-3 label_left">Row Klasse(n)</label>
            <div class="col-sm-9">
-             ' . $val['class'] . '
+             ' . $val['row_class'] . '
            </div>
          </div>
        ';
     }
-    if ( $val['grid_class'] != '' ) {
-        $grid_class = $val['grid_class'];
+    if ( isset($val['col_class'])) {
+        $col_class = $val['col_class'];
         $outback[] = '
          <div class="form-group">
-         <label class="col-sm-3 label_left">Grid Klasse(n)</label>
+         <label class="col-sm-3 label_left">Col Klasse(n)</label>
            <div class="col-sm-9">
-             ' . $grid_class. '
+             ' . $col_class. '
            </div>
          </div>
        ';
@@ -260,40 +263,40 @@ $outback[] = '
 switch ($grid) {
     case '12':
         $out .= '
-      <div class="col-xs-12 '.$individuelle_css_klasse[1].'" '.$individuelle_css_id[1].'>
+      <div class="col-xs-12 '.$col_class.' '.$individuelle_css_klasse[1].'" '.$individuelle_css_id[1].'>
         '.$html_block[1].'
       </div>'.PHP_EOL;
         break;
     case '6_6':
         $out .= '
-      <div class="col-xs-12 col-md-6 '.$individuelle_css_klasse[1].'" '.$individuelle_css_id[1].'>
+      <div class="col-xs-12 col-md-6 '.$col_class.' '.$individuelle_css_klasse[1].'" '.$individuelle_css_id[1].'>
         '.$html_block[1].'
       </div>
-      <div class="col-xs-12 col-md-6 '.$individuelle_css_klasse[2].'" '.$individuelle_css_id[2].'>
+      <div class="col-xs-12 col-md-6 '.$col_class.' '.$individuelle_css_klasse[2].'" '.$individuelle_css_id[2].'>
         '.$html_block[2].'
       </div>'.PHP_EOL;
         break;
     case '4_4_4':
         $out .= '
-      <div class="col-xs-12 col-md-12 col-lg-4 '.$individuelle_css_klasse[1].'" '.$individuelle_css_id[1].'>
+      <div class="col-xs-12 col-md-12 col-lg-4 '.$col_class.' '.$individuelle_css_klasse[1].'" '.$individuelle_css_id[1].'>
         '.$html_block[1].'
       </div>
-      <div class="col-xs-12 col-md-6 col-lg-4 '.$individuelle_css_klasse[2].'" '.$individuelle_css_id[2].'>
+      <div class="col-xs-12 col-md-6 col-lg-4 '.$col_class.' '.$individuelle_css_klasse[2].'" '.$individuelle_css_id[2].'>
         '.$html_block[2].'
       </div>
-      <div class="col-xs-12 col-md-6 col-lg-4 '.$individuelle_css_klasse[3].'" '.$individuelle_css_id[3].'>
+      <div class="col-xs-12 col-md-6 col-lg-4 '.$col_class.' '.$individuelle_css_klasse[3].'" '.$individuelle_css_id[3].'>
         '.$html_block[3].'
       </div>'.PHP_EOL;
         break;
     case '3_3_3_3':
         $out .= '
-      <div class="col-xs-12 col-md-6 col-lg-3 '.$individuelle_css_klasse[1].'" '.$individuelle_css_id[1].'>
+      <div class="col-xs-12 col-md-6 col-lg-3 '.$col_class.' '.$individuelle_css_klasse[1].'" '.$individuelle_css_id[1].'>
         '.$html_block[1].'
       </div>
-      <div class="col-xs-12 col-md-6 col-lg-3 '.$individuelle_css_klasse[2].'" '.$individuelle_css_id[2].'>
+      <div class="col-xs-12 col-md-6 col-lg-3 '.$col_class.' '.$individuelle_css_klasse[2].'" '.$individuelle_css_id[2].'>
         '.$html_block[2].'
       </div>
-      <div class="col-xs-12 col-md-6 col-lg-3 '.$individuelle_css_klasse[3].'" '.$individuelle_css_id[3].'>
+      <div class="col-xs-12 col-md-6 col-lg-3 '.$col_class.' '.$individuelle_css_klasse[3].'" '.$individuelle_css_id[3].'>
         '.$html_block[3].'
       </div>
       <div class="col-xs-12 col-md-6 col-lg-3 '.$individuelle_css_klasse[4].'" '.$individuelle_css_id[4].'>
@@ -303,13 +306,13 @@ switch ($grid) {
 
     case '6_3_3':
         $out .= '
-      <div class="col-xs-12 col-md-12 col-lg-6 '.$individuelle_css_klasse[1].'" '.$individuelle_css_id[1].'>
+      <div class="col-xs-12 col-md-12 col-lg-6 '.$col_class.' '.$individuelle_css_klasse[1].'" '.$individuelle_css_id[1].'>
         '.$html_block[1].'
       </div>
-      <div class="col-xs-12 col-md-6 col-lg-3 '.$individuelle_css_klasse[2].'" '.$individuelle_css_id[2].'>
+      <div class="col-xs-12 col-md-6 col-lg-3 '.$col_class.' '.$individuelle_css_klasse[2].'" '.$individuelle_css_id[2].'>
         '.$html_block[2].'
       </div>
-      <div class="col-xs-12 col-md-6 col-lg-3 '.$individuelle_css_klasse[3].'" '.$individuelle_css_id[3].'>
+      <div class="col-xs-12 col-md-6 col-lg-3 '.$col_class.' '.$individuelle_css_klasse[3].'" '.$individuelle_css_id[3].'>
         '.$html_block[3].'
       </div>'.PHP_EOL;
         break;
@@ -317,44 +320,44 @@ switch ($grid) {
 
     case '3_6_3':
         $out .= '
-      <div class="col-xs-12 col-md-6 col-lg-3 '.$individuelle_css_klasse[1].'" '.$individuelle_css_id[1].'>
+      <div class="col-xs-12 col-md-6 col-lg-3 '.$col_class.' '.$individuelle_css_klasse[1].'" '.$individuelle_css_id[1].'>
         '.$html_block[1].'
       </div>
-      <div class="col-xs-12 col-md-12 col-lg-6 '.$individuelle_css_klasse[2].'" '.$individuelle_css_id[2].' >
+      <div class="col-xs-12 col-md-12 col-lg-6 '.$col_class.' '.$individuelle_css_klasse[2].'" '.$individuelle_css_id[2].' >
         '.$html_block[2].'
       </div>
-      <div class="col-xs-12 col-md-6 col-lg-3'.$individuelle_css_klasse[3].'" '.$individuelle_css_id[3].'>
+      <div class="col-xs-12 col-md-6 col-lg-3 '.$col_class.' '.$individuelle_css_klasse[3].'" '.$individuelle_css_id[3].'>
         '.$html_block[3].'
       </div>'.PHP_EOL;
         break;
 
     case '3_3_6':
         $out .= '
-      <div class="col-xs-12 col-md-6 col-lg-3 '.$individuelle_css_klasse[1].'" '.$individuelle_css_id[1].'>
+      <div class="col-xs-12 col-md-6 col-lg-3 '.$col_class.' '.$individuelle_css_klasse[1].'" '.$individuelle_css_id[1].'>
         '.$html_block[1].'
       </div>
-      <div class="col-xs-12 col-md-6 col-lg-3 '.$individuelle_css_klasse[2].'" '.$individuelle_css_id[2].'>
+      <div class="col-xs-12 col-md-6 col-lg-3 '.$col_class.' '.$individuelle_css_klasse[2].'" '.$individuelle_css_id[2].'>
         '.$html_block[2].'
       </div>
-      <div class="col-xs-12 col-md-12 col-lg-6 '.$individuelle_css_klasse[3].'" '.$individuelle_css_id[3].'>
+      <div class="col-xs-12 col-md-12 col-lg-6 '.$col_class.' '.$individuelle_css_klasse[3].'" '.$individuelle_css_id[3].'>
         '.$html_block[3].'
       </div>'.PHP_EOL;
         break;
     case '8_4':
         $out .= '
-      <div class="col-xs-12 col-md-8 '.$individuelle_css_klasse[1].'" '.$individuelle_css_id[1].'>
+      <div class="col-xs-12 col-md-8 '.$col_class.' '.$individuelle_css_klasse[1].'" '.$individuelle_css_id[1].'>
         '.$html_block[1].'
       </div>
-      <div class="col-xs-12 col-md-4 '.$individuelle_css_klasse[2].'" '.$individuelle_css_id[2].'>
+      <div class="col-xs-12 col-md-4 '.$col_class.' '.$individuelle_css_klasse[2].'" '.$individuelle_css_id[2].'>
         '.$html_block[2].'
       </div>'.PHP_EOL;
         break;
     case '4_8':
         $out .= '
-      <div class="col-xs-12 col-md-4 '.$individuelle_css_klasse[1].'" '.$individuelle_css_id[1].'>
+      <div class="col-xs-12 col-md-4 '.$col_class.' '.$individuelle_css_klasse[1].'" '.$individuelle_css_id[1].'>
         '.$html_block[1].'
       </div>
-      <div class="col-xs-12 col-md-8 '.$individuelle_css_klasse[2].'" '.$individuelle_css_id[2].'>
+      <div class="col-xs-12 col-md-8 '.$col_class.' '.$individuelle_css_klasse[2].'" '.$individuelle_css_id[2].'>
         '.$html_block[2].'
       </div>'.PHP_EOL;
         break;
@@ -362,22 +365,5 @@ switch ($grid) {
 if ( rex::isBackend() ) {
     echo implode( $outback );
 } else {
-    echo  '<section '.$wrapper_id.' class="'.$fullwidth.' "><div class="row '.$grid_class.'">'.$out.'</div></section>';
+    echo  '<section '.$container_id.' class="das_modul '.$fullwidth.' "><div class="row '.$row_class.'">'.$out.'</div></section>';
 }
-?>
-<style>
-    * {
-    // border: 1px solid red;
-    }
-    .fullwidth {
-        max-width: 100%;
-        background: #555;
-        color: #fff;
-        padding: 0;
-        margin: 0;
-    }
-    .container {
-        background: #eee;
-
-    }
-</style>

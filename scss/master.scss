@@ -421,12 +421,12 @@
   min-height: 50px;
 }
 
-#das_modul_wrapper .das_modul_wrapper {
+#das_modul_wrapper .mblock_wrapper {
   margin: auto;
   padding: 0;
 }
 
-#das_modul_wrapper .das_modul_wrapper > div {
+#das_modul_wrapper .mblock_wrapper > div {
   border: 1px solid #ccc;
   background: #f0f0f0;
   /*color: #1C94C4;*/
@@ -435,7 +435,7 @@
   position: relative;
 }
 
-#das_modul_wrapper .das_modul_wrapper span.sorthandle {
+#das_modul_wrapper .mblock_wrapper span.sorthandle {
   cursor: move;
   position: absolute;
   opacity: .4;
@@ -446,22 +446,22 @@
   background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAAB3RJTUUH3wIDBycZ/Cj09AAAAAlwSFlzAAALEgAACxIB0t1+/AAAAARnQU1BAACxjwv8YQUAAAAWSURBVHjaY2DABhoaGupBGMRmYiAEAKo2BAFbROu9AAAAAElFTkSuQmCC);
 }
 
-#das_modul_wrapper .das_modul_wrapper span.sorthandle:hover {
+#das_modul_wrapper .mblock_wrapper span.sorthandle:hover {
   opacity: .95;
 }
 
-#das_modul_wrapper .das_modul_wrapper .addme {
+#das_modul_wrapper .mblock_wrapper .addme {
   padding: 5px 8px 1px 8px !important;
 }
 
-#das_modul_wrapper .das_modul_wrapper span.removeadded .btn[disabled] {
+#das_modul_wrapper .mblock_wrapper span.removeadded .btn[disabled] {
   cursor: default;
   color: #d2d8de;
   background: #fafafa;
   border-color: #d2d8de;
 }
 
-#das_modul_wrapper .das_modul_wrapper span.removeadded .btn[disabled]:hover {
+#das_modul_wrapper .mblock_wrapper span.removeadded .btn[disabled]:hover {
   color: #d2d8de;
 }
 
@@ -517,4 +517,3 @@
   color: transparent;
   text-shadow: 0 0 0 #000;
 }
-

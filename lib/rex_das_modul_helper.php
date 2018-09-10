@@ -90,17 +90,29 @@ class rex_das_modul_helper
     function id_class_input($id)
     {
         $mform = new MForm();
-        $mform->addFieldset('Klasse(n) / ID <i class="module_help_link fa fa-exclamation-triangle" aria-hidden="true"></i>');
+        $mform->addFieldset('ID / Klassen(n) <i class="module_help_link fa fa-exclamation-triangle" aria-hidden="true"></i>');
         $mform->addHtml('<div class="module_help_content">
                         <p>Hier können individuelle IDs und Klassen vergeben werden.</p>
                         <p><em>Sollten Sie nicht sehr genau wissen was damit gemeint ist fragen Sie Ihren Webentwickler.</em></p>
                       </div>');
+
+        if ($id == "5") {
+            $mform->addHtml('<div class="col-sm-12">');
+            $mform->addTextField("$id.0.container_id", array('label' => 'Container ID'));
+            $mform->addHtml('</div>');
+
+            $mform->addHtml('<div class="col-sm-12">');
+            $mform->addTextField("$id.0.row_class", array('label' => 'Row Klasse(n)'));
+            $mform->addHtml('</div>');
+
+        } else {
+            $mform->addHtml('<div class="col-sm-12">');
+            $mform->addTextField("$id.0.col_id", array('label' => 'Col ID'));
+            $mform->addHtml('</div>');
+        }
+
         $mform->addHtml('<div class="col-sm-12">');
-        $mform->addTextField("$id.0.id_value", array('label' => 'Section ID'));
-        $mform->addHtml('</div><div class="col-sm-12">');
-        $mform->addTextField("$id.0.class", array('label' => 'Section Klasse(n)'));
-        $mform->addHtml('</div><div class="col-sm-12">');
-        $mform->addTextField("$id.0.grid_class", array('label' => 'Grid Klasse(n)'));
+        $mform->addTextField("$id.0.col_class", array('label' => 'Col Klasse(n)'));
         $mform->addHtml('</div>');
         echo $mform->show();
     }
