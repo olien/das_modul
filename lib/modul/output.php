@@ -139,8 +139,8 @@ foreach ( $reihenfolge as $nummer ) {
                     $outback[]             = $dm_output->modal_output( $val['modal_headline'],$val['REX_LINK_1'],$val['modal_link_bezeichnung'],$val['modal_link_type'], $val['modal_print'] );
                     break;
                 case 'unite_gallery':
-                    $html_block[$zaehler] .= $dm_output->unite_gallery_output( $val['REX_MEDIALIST_1'],$val['unite_gallery_art'],$val['unite_gallery_img_width'],$val['unite_gallery_img_height']);
-                    $outback[]             = $dm_output->unite_gallery_output( $val['REX_MEDIALIST_1'],$val['unite_gallery_art'],$val['unite_gallery_img_width'],$val['unite_gallery_img_height']);
+                    $html_block[$zaehler] .= $dm_output->unite_gallery_output( $val['REX_MEDIALIST_2'],$val['unite_gallery_art'],$val['unite_gallery_img_width'],$val['unite_gallery_img_height']);
+                    $outback[]             = $dm_output->unite_gallery_output( $val['REX_MEDIALIST_2'],$val['unite_gallery_art'],$val['unite_gallery_img_width'],$val['unite_gallery_img_height']);
                     break;
             }
         }
@@ -276,13 +276,13 @@ switch ($grid) {
         break;
     case '4_4_4':
         $out .= '
-      <div class="col-xs-12 col-md-12 col-lg-4 '.$col_class.' '.$individuelle_css_klasse[1].'" '.$individuelle_css_id[1].'>
+      <div class="col-xs-12 col-md-4 col-lg-4 '.$col_class.' '.$individuelle_css_klasse[1].'" '.$individuelle_css_id[1].'>
         '.$html_block[1].'
       </div>
-      <div class="col-xs-12 col-md-6 col-lg-4 '.$col_class.' '.$individuelle_css_klasse[2].'" '.$individuelle_css_id[2].'>
+      <div class="col-xs-12 col-md-4 col-lg-4 '.$col_class.' '.$individuelle_css_klasse[2].'" '.$individuelle_css_id[2].'>
         '.$html_block[2].'
       </div>
-      <div class="col-xs-12 col-md-6 col-lg-4 '.$col_class.' '.$individuelle_css_klasse[3].'" '.$individuelle_css_id[3].'>
+      <div class="col-xs-12 col-md-4 col-lg-4 '.$col_class.' '.$individuelle_css_klasse[3].'" '.$individuelle_css_id[3].'>
         '.$html_block[3].'
       </div>'.PHP_EOL;
         break;

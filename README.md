@@ -2,14 +2,15 @@
 
 Dieses AddOn installiert das Modul **0000 - Standard** und die zugehörigen Dateien.
 
-Auf einer Einstellungsseite im Modul kann die jeweile Anordung der Inhalte ausgewählt werden (jederzeit änderbar). Hier gibt es auch die Möglichkeit für diese Section eine individuelle ID und Klassen zu vergeben. Zudem kann für jede Col eine Klasse vergeben werden. Es besteht die Möglichkeit zu wählen ob der Container Fluid sein soll.
+Auf einer Einstellungsseite im Modul kann die jeweile Anordung der Inhalte ausgewählt werden (jederzeit änderbar). Hier gibt es auch die Möglichkeit für diese Section eine individuelle ID und Klassen zu vergeben. Zudem kann für jede Col eine Klasse vergeben werden. Es besteht die Möglichkeit zu wählen ob der Container fluid sein soll.
 
 
 ---
 
 ### Installation / Benutzung
 
-- Bei den Ausgaben im Frontend wird das Bootstrap4 Grid benutzt.
+Bei den Ausgaben im Frontend wird das Bootstrap4 Grid benutzt.
+
 
 ---
 ### Module (eigentlich Funktionen)
@@ -21,8 +22,8 @@ Hier kann eine Überschrift eingepflegt werden. Zusätzlich ist die Angabe der "
 Es wird eine Textarea bereitgestellt. Je nach installiertem Editor wird dieser eingebunden. Aktuell funktionieren leider nur die AddOns: _MarkitUp_ und _Tinymce4_ (siehe: https://github.com/FriendsOfREDAXO/redactor2/issues/134)<br/>_Sollten schon Inhalte eingepflegt sein können bei einem Wechsel des Editors alle Formtierungen verloren gehen._
 
 
-**0030 - Bild** (image_input / image_output)<br/>
-Hier kann ein Bild ausgewählt und intern verlinkt werden.<br/>
+**0030 - Bild** (image_input / image_output)
+Hier kann ein Bild ausgewählt und intern verlinkt werden.
 *CSS: ./assets/addons/das_modul/css/image.css*  
 
 **0040 - Download** (downloads_input / downloads_output)
@@ -37,7 +38,7 @@ Durch die Angebe eine YouTube bz. Vimeo Film ID kann das Video im Fornten darges
 Durch die Angebe eine YouTube bz. Vimeo Film ID kann das Video im Fornten dargestellt werden. Hier sollte noch eine DSGVO gerechte Lösung gefunden werden. **CSS benötigt**.
 
 **0070 - Card (Teaser)**
-Ermöglicht es eine CARD auszugeben (Bild, Text, interner Link). **CSS benötigt**.  
+Ermöglicht es eine CARD auszugeben (Bild, Text, interner Link). *CSS: ./assets/addons/das_modul/css/cards.css*  
 
 **0080 - Abstand einfügen**
 
@@ -82,6 +83,12 @@ Test Template:
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="./assets/addons/das_modul/css/frontend.css">
+
+    <link rel="stylesheet" href="./assets/addons/das_modul/css/image.css">
+    <link rel="stylesheet" href="./assets/addons/das_modul/css/video.css">
+    <link rel="stylesheet" href="./assets/addons/das_modul/css/cards.css">
+
+
 </head>
 <body>
 
@@ -89,4 +96,5 @@ REX_ARTICLE[]
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
 </html>
+
 ```

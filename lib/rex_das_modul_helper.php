@@ -339,9 +339,7 @@ class rex_das_modul_helper
               </div>');
 
         $mform->addTextField("$id.0.downloads_headline", array('label' => 'Überschrift'));
-        // $mform->addMedialistField(1, array('label' => 'Dateien'));
-        $mform->addMedialistField(1, array('types'=>'gif,jpg','preview'=>1), 1, array('label'=>'Label Name'));
-
+        $mform->addMedialistField(1, array('label' => 'Dateien'));
 
     }
 
@@ -407,7 +405,7 @@ class rex_das_modul_helper
                     $extension = substr(strrchr($value_dl, '.'), 1);
                     $parsed_icon = parse_icon($extension);
                     $downloadmedia = rex_media::get($value_dl);
-                    $file_desc = $downloadmedia->getValue('med_description');
+                    $file_desc = "ggg"; //$downloadmedia->getValue('title');
 
                     $download_fe_dateien .= '<li><a href="index.php?rex_media_type=download&rex_media_file=' . $value_dl . '">' . $parsed_icon;
                     $download_be_dateien .= $value_dl . '<br/>';
@@ -1025,7 +1023,7 @@ class rex_das_modul_helper
             <p><b>Carousel</b><br/>Gibt die Bilder in einem Carousell aus.</p>
           </div>');
 
-        $mform->addMedialistField(1, array('label' => 'Bilder'));
+        $mform->addMedialistField(2, array('label' => 'Bilder'));
 
         $mform->addSelectField(
             "$id.0.unite_gallery_art",
@@ -1067,7 +1065,7 @@ class rex_das_modul_helper
 
             foreach ($arr as $value_media) {
                 $media      = rex_media::get($value_media);
-                $file_desc  = $media->getValue('med_description');
+                 $file_desc  = $media->getValue('med_description');
 
                 $galerie_be_dateien .= $value_media . '<br/>';
             }
