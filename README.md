@@ -27,7 +27,6 @@ Hier kann ein Bild ausgewählt und intern verlinkt werden.
 *CSS: ./assets/addons/das_modul/css/image.css*  
 
 **0040 - Download** (downloads_input / downloads_output)
-**Funktioniert grad nicht**.  
  
 **0050 - Film (extern)** (video_input / video_output)
 Durch die Angebe eine YouTube bz. Vimeo Film ID kann das Video im Fornten dargestellt werden. Hier sollte noch eine DSGVO gerechte Lösung gefunden werden.

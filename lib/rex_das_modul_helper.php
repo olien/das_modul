@@ -405,13 +405,14 @@ class rex_das_modul_helper
                     $extension = substr(strrchr($value_dl, '.'), 1);
                     $parsed_icon = parse_icon($extension);
                     $downloadmedia = rex_media::get($value_dl);
-                    $file_desc = "ggg"; //$downloadmedia->getValue('title');
+                    $file_title = $downloadmedia->getValue('title');
+                    $file_desc = $downloadmedia->getValue('description');
 
                     $download_fe_dateien .= '<li><a href="index.php?rex_media_type=download&rex_media_file=' . $value_dl . '">' . $parsed_icon;
                     $download_be_dateien .= $value_dl . '<br/>';
 
-                    if ($file_desc != "") {
-                        $download_fe_dateien .= $file_desc;
+                    if ($file_title != "") {
+                        $download_fe_dateien .= $file_title;
                     } else {
                         $download_fe_dateien .= $value_dl;
                     }
