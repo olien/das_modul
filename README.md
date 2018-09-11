@@ -1,3 +1,11 @@
+> Wer vorab tetsen möchte kann das gerne wie folgt machen: 
+> Einige Sachen funktionieren noch nicht oder sind noch nicht getestet (60,80,90,100)
+> Issues/Wünsche könnt Ihr trotzdem schon schreiben :-))
+> Sollte das Backend (viel) zu langsam sein bitte in der .yml Datei **compile:** auf 0 stellen.
+>
+
+
+
 ## Das Modul // Codename: _Gensfleisch 1468_ 
 
 Dieses AddOn installiert das Modul **0000 - Standard** und die zugehörigen Dateien.
@@ -46,12 +54,11 @@ Der Download erfolgt dann direkt über /download/dateiname.pdf
 ###
  
 **0050 - Film (extern)** (video_input / video_output)
-Durch die Angebe eine YouTube bz. Vimeo Film ID kann das Video im Fornten dargestellt werden. Hier sollte noch eine DSGVO gerechte Lösung gefunden werden.
+Durch die Angabe eine YouTube bz. Vimeo Film ID kann das Video im Fornten dargestellt werden. Hier sollte noch eine DSGVO gerechte Lösung gefunden werden.
 *CSS: ./assets/addons/das_modul/css/video.css*
 
 
 **0060 - Link (intern / extern)** (link_input / link_output)
-Durch die Angebe eine YouTube bz. Vimeo Film ID kann das Video im Fornten dargestellt werden. Hier sollte noch eine DSGVO gerechte Lösung gefunden werden. **CSS benötigt**.
 
 **0070 - Card (Teaser)**
 Ermöglicht es eine CARD auszugeben (Bild, Text, interner Link). *CSS: ./assets/addons/das_modul/css/cards.css*  
