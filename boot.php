@@ -47,6 +47,19 @@ if (rex::isBackend() && rex::getUser()) {
         }
     });
 
+    /** Abstand **/
+    rex_extension::register('PACKAGES_INCLUDED', function () {
+        if (rex::getUser() && $this->getProperty('compile')) {
+
+            $compiler = new rex_scss_compiler();
+            $scss_files = rex_extension::registerPoint(new rex_extension_point('BE_STYLE_SCSS_FILES', [$this->getPath('scss/abstand.scss')]));
+            $compiler->setScssFile($scss_files);
+            $compiler->setCssFile($this->getPath('assets/css/abstand.css'));
+            $compiler->compile();
+            rex_file::copy($this->getPath('assets/css/abstand.css'), $this->getAssetsPath('css/abstand.css'));
+        }
+    });
+
     /** Cards **/
     rex_extension::register('PACKAGES_INCLUDED', function () {
         if (rex::getUser() && $this->getProperty('compile')) {

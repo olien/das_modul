@@ -1,5 +1,5 @@
 > Wer vorab tetsen möchte kann das gerne wie folgt machen: 
-> Einige Sachen funktionieren noch nicht oder sind noch nicht getestet (60,80,90,100)
+> Einige Sachen funktionieren noch nicht oder sind noch nicht getestet (60,90,100)
 > Issues/Wünsche könnt Ihr trotzdem schon schreiben :-))
 > Sollte das Backend (viel) zu langsam sein bitte in der .yml Datei **compile:** auf 0 stellen.
 >
@@ -64,6 +64,9 @@ Durch die Angabe eine YouTube bz. Vimeo Film ID kann das Video im Fornten darges
 Ermöglicht es eine CARD auszugeben (Bild, Text, interner Link). *CSS: ./assets/addons/das_modul/css/cards.css*  
 
 **0080 - Abstand einfügen**
+Es kann ein abstand mir/ohne Grafik/line ausgegeben werden.
+*Die Grafiuk liegt hier: ./assets/addons/das_modul/images/divider.png* 
+
 
 **0090 - Artikel im Modal öffnen**
 
@@ -105,7 +108,6 @@ Test Template:
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="./assets/addons/das_modul/css/frontend.css">
 
     <link rel="stylesheet" href="./assets/addons/das_modul/css/image.css">
     <link rel="stylesheet" href="./assets/addons/das_modul/css/video.css">

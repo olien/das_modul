@@ -683,7 +683,7 @@ class rex_das_modul_helper
 
         if ($space_image == 'ja') {
             $divider_class_image = 'image';
-            $image         = '<img src="index.php?rex_media_type=trenner&rex_media_file=trenner.png" width="30" height="30" alt="divider">';
+            $image         = '<img src="./assets/addons/das_modul/images/divider.png" width="30" height="30" alt="divider">';
         }
         if ($space_linie == 'ja') {
             $divider_class_line = ' line';
