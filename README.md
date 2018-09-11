@@ -86,7 +86,7 @@ Funktion für die Eingaben der Klassen und IDs
 
 > **Warum _Gensfleisch 1468_**
 >
-> Nun WordPress bekommt jetzt demnächst den "Gutenberg" Editor und die freuen sich grad ´n Ast. Das was der supertolle Gutenberg Editor können wird ist schon lange die Funktionsweise von REDAXO. Nur nicht ganz so fancy. Dieses Modul ermöglicht es dem Redakteur Inhalte modular wie beim Gutenberg Editor zu pflegen. Nur einfacher.  
+> Nun WordPress bekommt jetzt demnächst den "Gutenberg" Editor und die freuen sich grad ´n Ast. Das was der supertolle Gutenberg Editor können wird ist schon lange die Funktionsweise von REDAXO. Nur nicht ganz so fancy. Dieses Modul ermöglicht es dem Redakteur Inhalte modular und im Grid wie beim Gutenberg Editor (geplant) zu pflegen. Nur einfacher.  
 >
 > Gutenberg heisst eigentlich "Johannes Gensfleisch" und ist 1468 gestorben...
 
