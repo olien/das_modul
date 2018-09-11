@@ -2,7 +2,7 @@
 
 Dieses AddOn installiert das Modul **0000 - Standard** und die zugehörigen Dateien.
 
-Auf einer Einstellungsseite im Modul kann die jeweile Anordung der Inhalte ausgewählt werden (jederzeit änderbar). Hier gibt es auch die Möglichkeit für den Container, der Row und den Cols IDs und Klassen zu vergeben. Es besteht auch die Möglichkeit zu wählen ob der Container fluid sein soll.
+Auf einer Einstellungsseite im Modul kann die jeweile Anordung der Inhalte ausgewählt werden (jederzeit änderbar). Hier gibt es auch die Möglichkeit für den Container, der Row und den Cols IDs und Klassen zu vergeben. Es besteht zudem die Möglichkeit zu wählen ob der Container fluid sein soll.
 
 
 ---
@@ -26,7 +26,24 @@ Es wird eine Textarea bereitgestellt. Je nach installiertem Editor wird dieser e
 Hier kann ein Bild ausgewählt und intern verlinkt werden.
 *CSS: ./assets/addons/das_modul/css/image.css*  
 
-**0040 - Download** (downloads_input / downloads_output)
+**0040 - Download** (downloads_input / downloads_output
+Dateien können zum Downlad bereitgestellt werden.
+
+Wem der Download Pfad nicht gefällt, der wandelt die .htaccess noch ab:
+
+    RewriteRule ^media/([^/]*)/([^/]*) %{ENV:BASE}/index.php?rex_media_type=$1&rex_media_file=$2&%{QUERY_STRING} [B]
+
+Der Download erfolgt dann über /media/download/dateiname.pdf</p>
+
+Oder:
+
+    RewriteRule ^download/([^/]*) %{ENV:BASE}/index.php?rex_media_type=download&rex_media_file=$1&%{QUERY_STRING} [B]
+
+Der Download erfolgt dann direkt über /download/dateiname.pdf
+
+(Nochmal testen))
+
+###
  
 **0050 - Film (extern)** (video_input / video_output)
 Durch die Angebe eine YouTube bz. Vimeo Film ID kann das Video im Fornten dargestellt werden. Hier sollte noch eine DSGVO gerechte Lösung gefunden werden.

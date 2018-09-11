@@ -340,7 +340,6 @@ class rex_das_modul_helper
 
         $mform->addTextField("$id.0.downloads_headline", array('label' => 'Überschrift'));
         $mform->addMedialistField(1, array('label' => 'Dateien'));
-
     }
 
     function downloads_output($downloads_headline, $REX_MEDIALIST_1)
@@ -422,9 +421,13 @@ class rex_das_modul_helper
                 $fe_output[] = '<ul class="download" >' . $download_fe_dateien . '</ul>';
             }
             $be_output[] = '<legend>Downloads</legend>
-              <div class="form-group">
-                <div class="col-sm-3 label_left">Überschrift</div>
-                <div class="col-sm-9">' . $downloads_headline . '</div>
+              <div class="form-group">';
+
+            if ($downloads_headline != '') {
+                $be_output[] = '<div class="col-sm-3 label_left">Überschrift</div>
+                <div class="col-sm-9">' . $downloads_headline . '</div>';
+            }
+            $be_output[] = '                
                 <div class="col-sm-3 label_left">Dateie(n)</div>
                 <div class="col-sm-9">' . $download_be_dateien . '</div>
               </div>';
@@ -1073,7 +1076,7 @@ class rex_das_modul_helper
 
             $be_output[] = '
               <div class="form-group">
-                <div class="col-sm-3 label_left">Builder</div>
+                <div class="col-sm-3 label_left">Bilder</div>
                 <div class="col-sm-9">' . $galerie_be_dateien . '</div>
               </div>';
 
