@@ -183,3 +183,15 @@ REX_ARTICLE[]
 </body>
 </html>
 ```
+
+
+
+
+___
+
+### Credits
+
+- [REDAXO](https://redaxo.org), [FriendsOfREDAXO](https://github.com/FriendsOfREDAXO)
+- [MForm](https://github.com/FriendsOfREDAXO/mform) , [MBlock](https://github.com/FriendsOfREDAXO/mblock)
+- [Bootstrap](https://getbootstrap.com/), [Unite Gallery](https://github.com/vvvmax/unitegallery/) 
+- [Tim](https://github.com/orgs/FriendsOfREDAXO/people/elricco),[Thomas](https://github.com/orgs/FriendsOfREDAXO/people/tbaddade),[Peter](https://github.com/polarpixel),[Gregor](https://github.com/orgs/FriendsOfREDAXO/people/gharlan) (und alle, die hier vergessen wurden :-))

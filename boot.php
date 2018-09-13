@@ -6,8 +6,8 @@ $this->setProperty('stylescss' ,'0');
 $this->setProperty('videocss'  ,'0');
 $this->setProperty('abstandcss','0');
 $this->setProperty('cardscss'  ,'0');
-$this->setProperty('modalcss'  ,'1');
-$this->setProperty('unitegallerycss'  ,'1');
+$this->setProperty('modalcss'  ,'0');
+$this->setProperty('unitegallerycss'  ,'0');
 
 if (rex::isBackend() && rex::getUser()) {
 
