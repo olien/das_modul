@@ -1,7 +1,7 @@
 Das Modul - Changelog
 =====================
 
-Version 1 – 07.09.208
---------------------------
+Version X  – 07.09.2018
+-----------------------
 
-* Funktion 'Check Editor' (MarkItUp, Redactor 2, CKE5)
+* Alpa
