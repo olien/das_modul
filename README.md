@@ -113,6 +113,7 @@ Test Template:
     <link rel="stylesheet" href="./assets/addons/das_modul/css/cards.css">
     <link rel="stylesheet" href="./assets/addons/das_modul/css/abstand.css">
     <link rel="stylesheet" href="./assets/addons/das_modul/css/modal.css">
+    <link rel="stylesheet" href="./assets/addons/das_modul/css/unitegallerycss.css">
 
 </head>
 <body>
@@ -121,26 +122,28 @@ REX_ARTICLE[]
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
 <script>
-    $(".open-modal").on('click', function(e){
+    $(".open-rex_modal").on('click', function(e){
 
-        $(".close-modal").click();
+        $(".close-rex_modal").click();
+
 
         e.preventDefault();
         e.stopImmediatePropagation;
 
         var $this = $(this),
             modal = $($this).data("modal");
-        
-        $(modal).parents(".modal-overlay").addClass("open");
+
+
+        $(modal).parents(".rex_modal-overlay").addClass("open");
         $(modal).addClass("open");
 
-        $(modal).parents(".modal-overlay").insertBefore( "#footer" );
+        // $(modal).parents(".rex_modal-overlay").insertBefore( "#footer" );
 
         $(document).on('click', function(e){
             var target = $(e.target);
 
-            if ($(target).hasClass("modal-overlay")){
-                $(target).find(".modal").each( function(){
+            if ($(target).hasClass("rex_modal-overlay")){
+                $(target).find(".rex_modal").each( function(){
                     $(this).removeClass("open");
                 });
                 $(target).removeClass("open");
@@ -148,7 +151,7 @@ REX_ARTICLE[]
         });
     });
 
-    $(".close-modal").on('click', function(e){
+    $(".close-rex_modal").on('click', function(e){
         e.preventDefault();
         e.stopImmediatePropagation;
 
@@ -156,7 +159,7 @@ REX_ARTICLE[]
             modal = $($this).data("modal");
 
         $(modal).removeClass("open");
-        $(".modal-overlay").removeClass("open");
+        $(".rex_modal-overlay").removeClass("open");
 
     });
 
@@ -179,5 +182,4 @@ REX_ARTICLE[]
 
 </body>
 </html>
-
 ```
