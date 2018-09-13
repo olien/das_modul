@@ -261,7 +261,7 @@ $outback[] = '
 switch ($grid) {
     case '12':
         $out .= '
-      <div class="col-xs-12 '.$col_class.' '.$individuelle_css_klasse[1].'" '.$individuelle_css_id[1].'>
+      <div class="col-12 '.$col_class.' '.$individuelle_css_klasse[1].'" '.$individuelle_css_id[1].'>
         '.$html_block[1].'
       </div>'.PHP_EOL;
         break;

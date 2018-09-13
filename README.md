@@ -1,9 +1,8 @@
 > Wer vorab tetsen möchte kann das gerne wie folgt machen: 
-> Einige Sachen funktionieren noch nicht oder sind noch nicht getestet (60,80,90,100)
+> Einige Sachen funktionieren noch nicht oder sind noch nicht getestet (60,90,100)
 > Issues/Wünsche könnt Ihr trotzdem schon schreiben :-)
+
 > Sollte das Backend (viel) zu langsam sein bitte in der .yml Datei **compile:** auf 0 stellen.
-
-
 
 
 ## Das Modul // Codename: _Gensfleisch 1468_ 
@@ -19,7 +18,7 @@ Es besteht zudem die Möglichkeit zu wählen ob der Container fluid sein soll.
 
 ### Installation / Benutzung
 
-Bei den Ausgaben im Frontend wird das Bootstrap4 Grid benutzt.
+folgt...
 
 
 ---
@@ -66,6 +65,9 @@ Durch die Angabe eine YouTube bz. Vimeo Film ID kann das Video im Fornten darges
 Ermöglicht es eine CARD auszugeben (Bild, Text, interner Link). *CSS: ./assets/addons/das_modul/css/cards.css*  
 
 **0080 - Abstand einfügen**
+Es kann ein abstand mir/ohne Grafik/line ausgegeben werden.
+*Die Grafiuk liegt hier: ./assets/addons/das_modul/images/divider.png* 
+
 
 **0090 - Artikel im Modal öffnen**
 
@@ -88,11 +90,9 @@ Funktion für die Eingaben der Klassen und IDs
 
 > **Warum _Gensfleisch 1468_**
 >
-> Nun WordPress bekommt jetzt demnächst den "Gutenberg" Editor und die freuen sich grad ´n Ast. Das was der supertolle Gutenberg Editor können wird ist schon lange die Funktionsweise von REDAXO. Nur nicht ganz so fancy. Dieses Modul ermöglicht es dem Redakteur Inhalte modular und im Grid wie beim Gutenberg Editor (geplant) zu pflegen. Nur einfacher.  
+> Nun WordPress bekommt jetzt demnächst den "Gutenberg" Editor und die freuen sich grad ´n Ast. Das was der supertolle Gutenberg Editor kann/können wird ist schon lange die Funktionsweise von REDAXO. Vielleicht nicht ganz so fancy. Dieses Modul ermöglicht es dem Redakteur Inhalte modular und im Grid wie beim Gutenberg Editor (geplant) zu pflegen. Nur einfacher :-)  
 >
 > Gutenberg heisst eigentlich "Johannes Gensfleisch" und ist 1468 gestorben... (https://de.wikipedia.org/wiki/Johannes_Gutenberg)
-
-
 
 
 ---
@@ -106,13 +106,15 @@ Test Template:
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="./assets/addons/das_modul/css/frontend.css">
 
     <link rel="stylesheet" href="./assets/addons/das_modul/css/image.css">
     <link rel="stylesheet" href="./assets/addons/das_modul/css/video.css">
     <link rel="stylesheet" href="./assets/addons/das_modul/css/cards.css">
-
+    <link rel="stylesheet" href="./assets/addons/das_modul/css/abstand.css">
+    <link rel="stylesheet" href="./assets/addons/das_modul/css/modal.css">
+    <link rel="stylesheet" href="./assets/addons/das_modul/css/unitegallerycss.css">
 
 </head>
 <body>
@@ -120,6 +122,77 @@ Test Template:
 REX_ARTICLE[]
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
-</html>
+<script>
+    $(".open-rex_modal").on('click', function(e){
 
+        $(".close-rex_modal").click();
+
+
+        e.preventDefault();
+        e.stopImmediatePropagation;
+
+        var $this = $(this),
+            modal = $($this).data("modal");
+
+
+        $(modal).parents(".rex_modal-overlay").addClass("open");
+        $(modal).addClass("open");
+
+        // $(modal).parents(".rex_modal-overlay").insertBefore( "#footer" );
+
+        $(document).on('click', function(e){
+            var target = $(e.target);
+
+            if ($(target).hasClass("rex_modal-overlay")){
+                $(target).find(".rex_modal").each( function(){
+                    $(this).removeClass("open");
+                });
+                $(target).removeClass("open");
+            }
+        });
+    });
+
+    $(".close-rex_modal").on('click', function(e){
+        e.preventDefault();
+        e.stopImmediatePropagation;
+
+        var $this = $(this),
+            modal = $($this).data("modal");
+
+        $(modal).removeClass("open");
+        $(".rex_modal-overlay").removeClass("open");
+
+    });
+
+    function printDiv(divId) {
+        var content = document.getElementById(divId).innerHTML;
+        var mywindow = window.open('', 'Print', 'height=10,width=10');
+
+        mywindow.document.write('<html><head><title>Print</title>');
+        mywindow.document.write('</head><body>');
+        mywindow.document.write(content);
+        mywindow.document.write('</body></html>');
+
+        mywindow.document.close();
+        mywindow.focus()
+        mywindow.print();
+        mywindow.close();
+        return true;
+    }
+</script>
+
+</body>
+</html>
 ```
+
+
+
+
+___
+
+### Credits
+
+- [REDAXO](https://redaxo.org), [FriendsOfREDAXO](https://github.com/FriendsOfREDAXO)
+- [MForm](https://github.com/FriendsOfREDAXO/mform) , [MBlock](https://github.com/FriendsOfREDAXO/mblock)
+- [Bootstrap](https://getbootstrap.com/), [Unite Gallery](https://github.com/vvvmax/unitegallery/) 
+- [Tim](https://github.com/orgs/FriendsOfREDAXO/people/elricco),[Thomas](https://github.com/orgs/FriendsOfREDAXO/people/tbaddade),[Peter](https://github.com/polarpixel),[Gregor](https://github.com/orgs/FriendsOfREDAXO/people/gharlan) (und alle, die hier vergessen wurden :-))

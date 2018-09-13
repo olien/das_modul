@@ -1,0 +1,64 @@
+.das_modul {
+
+  $trennline: #f00;
+
+  .trenner {
+    clear: both;
+    display: inline-block;
+    text-align: center;
+    overflow: hidden;
+    white-space: nowrap;
+    min-width: 100%;
+    span {
+      position: relative;
+      display: inline-block;
+      &:before,
+      &:after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        width: 9999em;
+        height: 1px;
+        background: transparent;
+      }
+      &:before {
+        right: 100%;
+        margin-right: -15px;
+      }
+      &:after {
+        left: 100%;
+        margin-left: -15px;
+      }
+    }
+    &.line {
+      span {
+        &:before,
+        &:after {
+          background: $trennline !important;
+        }
+      }
+    }
+    img {
+      position: relative;
+      height: 30px;
+      width: 30px;
+      span {
+        height: 30px;
+      }
+    }
+    &.both {
+      span {
+        &:before {
+          position: absolute;
+          top: 45%;
+          margin-right: 50%;
+        }
+        &:after {
+          position: absolute;
+          top: 45%;
+          margin-left: 15px;
+        }
+      }
+    }
+  }
+}

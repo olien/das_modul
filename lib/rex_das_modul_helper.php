@@ -683,7 +683,7 @@ class rex_das_modul_helper
 
         if ($space_image == 'ja') {
             $divider_class_image = 'image';
-            $image         = '<img src="index.php?rex_media_type=trenner&rex_media_file=trenner.png" width="30" height="30" alt="divider">';
+            $image         = '<img src="./assets/addons/das_modul/images/divider.png" width="30" height="30" alt="divider">';
         }
         if ($space_linie == 'ja') {
             $divider_class_line = ' line';
@@ -938,9 +938,9 @@ class rex_das_modul_helper
             $url = rex_geturl($REX_LINK_1, rex_clang::getCurrentId());
 
             if ($modal_link_type == 'Button') {
-                $fe_output[] = '<a href="javascript:void(0);" class="btn btn-primary open-modal" data-modal="#modal-'.$rand.'">' . $link_name . '</a>';
+                $fe_output[] = '<a href="javascript:void(0);" class="btn btn-primary open-rex_modal" data-modal="#rex_modal-'.$rand.'">' . $link_name . '</a>';
             } else {
-                $fe_output[] = '<a href="javascript:void(0);" class="open-modal" data-modal="#modal-'.$rand.'">' . $link_name . '</a>';
+                $fe_output[] = '<a href="javascript:void(0);" class="open-rex_modal" data-modal="#rex_modal-'.$rand.'">' . $link_name . '</a>';
             }
 
             if (rex_article::get($REX_LINK_1) != '') {
@@ -956,21 +956,21 @@ class rex_das_modul_helper
                 $headline = '';
             }
             if($print == 'ja') {
-                $print = '<li><a class="print-modal" data-modal="#modal" onclick="printDiv(\'print'.$rand.'\',\'Überschrift\')" ><span>Inhalt drucken</span></a></li>';
+                $print = '<li><a class="print-rex_modal" data-modal="#rex_modal" onclick="printDiv(\'print'.$rand.'\',\'Überschrift\')" ><span>Inhalt drucken</span></a></li>';
             } else {
                 $print = '';
             }
             $fe_output[]  = '
-            <div class="modal-overlay">
-                <div class="modal" id="modal-'.$rand.'">
-                    <div class="modalnav">
+            <div class="rex_modal-overlay" >
+                <div class="rex_modal" id="rex_modal-'.$rand.'">
+                    <div class="rex_modalnav">
                         '.$headline.'
                     <ul>
                         '.$print.'
-                        <li><a class="close-modal" data-modal="#modal" href="javascript:void(0);"><span>Fenster schließen</span></a></li>
+                        <li><a class="close-rex_modal" data-modal="#rex_modal" href="javascript:void(0);"><span>Fenster schließen</span></a></li>
                     </ul>
                 </div>
-                <div class="modal-content" id="print'.$rand.'">
+                <div class="rex_modal-content" id="print'.$rand.'">
                     '.$article_content.'
                 </div>
                 </div>
