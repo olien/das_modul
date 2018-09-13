@@ -1,8 +1,8 @@
 > Wer vorab tetsen möchte kann das gerne wie folgt machen: 
 > Einige Sachen funktionieren noch nicht oder sind noch nicht getestet (60,80,90,100)
-> Issues/Wünsche könnt Ihr trotzdem schon schreiben :-))
+> Issues/Wünsche könnt Ihr trotzdem schon schreiben :-)
 > Sollte das Backend (viel) zu langsam sein bitte in der .yml Datei **compile:** auf 0 stellen.
->
+
 
 
 
@@ -10,7 +10,9 @@
 
 Dieses AddOn installiert das Modul **0000 - Standard** und die zugehörigen Dateien.
 
-Auf einer Einstellungsseite im Modul kann die jeweile Anordung der Inhalte ausgewählt werden (jederzeit änderbar). Hier gibt es auch die Möglichkeit für den Container, der Row und den Cols IDs und Klassen zu vergeben. Es besteht zudem die Möglichkeit zu wählen ob der Container fluid sein soll.
+Auf einer Einstellungsseite im Modul kann die jeweile Anordung der Inhalte ausgewählt werden (jederzeit änderbar).
+Hier gibt es auch die Möglichkeit für den Container, der Row und den Cols IDs und Klassen zu vergeben.
+Es besteht zudem die Möglichkeit zu wählen ob der Container fluid sein soll.
 
 
 ---
@@ -49,7 +51,7 @@ Oder:
 
 Der Download erfolgt dann direkt über /download/dateiname.pdf
 
-(Nochmal testen))
+(Nochmal testen)
 
 ###
  
@@ -88,7 +90,7 @@ Funktion für die Eingaben der Klassen und IDs
 >
 > Nun WordPress bekommt jetzt demnächst den "Gutenberg" Editor und die freuen sich grad ´n Ast. Das was der supertolle Gutenberg Editor können wird ist schon lange die Funktionsweise von REDAXO. Nur nicht ganz so fancy. Dieses Modul ermöglicht es dem Redakteur Inhalte modular und im Grid wie beim Gutenberg Editor (geplant) zu pflegen. Nur einfacher.  
 >
-> Gutenberg heisst eigentlich "Johannes Gensfleisch" und ist 1468 gestorben...
+> Gutenberg heisst eigentlich "Johannes Gensfleisch" und ist 1468 gestorben... (https://de.wikipedia.org/wiki/Johannes_Gutenberg)
 
 
 
