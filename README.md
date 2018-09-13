@@ -100,89 +100,113 @@ Funktion für die Eingaben der Klassen und IDs
 
 Test Template:
 
-```
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-
-    <link rel="stylesheet" href="./assets/addons/das_modul/css/image.css">
-    <link rel="stylesheet" href="./assets/addons/das_modul/css/video.css">
-    <link rel="stylesheet" href="./assets/addons/das_modul/css/cards.css">
-    <link rel="stylesheet" href="./assets/addons/das_modul/css/abstand.css">
-    <link rel="stylesheet" href="./assets/addons/das_modul/css/modal.css">
-    <link rel="stylesheet" href="./assets/addons/das_modul/css/unitegallerycss.css">
-
-</head>
-<body>
-
-REX_ARTICLE[]
-
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
-<script>
-    $(".open-rex_modal").on('click', function(e){
-
-        $(".close-rex_modal").click();
-
-
-        e.preventDefault();
-        e.stopImmediatePropagation;
-
-        var $this = $(this),
-            modal = $($this).data("modal");
-
-
-        $(modal).parents(".rex_modal-overlay").addClass("open");
-        $(modal).addClass("open");
-
-        // $(modal).parents(".rex_modal-overlay").insertBefore( "#footer" );
-
-        $(document).on('click', function(e){
-            var target = $(e.target);
-
-            if ($(target).hasClass("rex_modal-overlay")){
-                $(target).find(".rex_modal").each( function(){
-                    $(this).removeClass("open");
-                });
-                $(target).removeClass("open");
-            }
-        });
-    });
-
-    $(".close-rex_modal").on('click', function(e){
-        e.preventDefault();
-        e.stopImmediatePropagation;
-
-        var $this = $(this),
-            modal = $($this).data("modal");
-
-        $(modal).removeClass("open");
-        $(".rex_modal-overlay").removeClass("open");
-
-    });
-
-    function printDiv(divId) {
-        var content = document.getElementById(divId).innerHTML;
-        var mywindow = window.open('', 'Print', 'height=10,width=10');
-
-        mywindow.document.write('<html><head><title>Print</title>');
-        mywindow.document.write('</head><body>');
-        mywindow.document.write(content);
-        mywindow.document.write('</body></html>');
-
-        mywindow.document.close();
-        mywindow.focus()
-        mywindow.print();
-        mywindow.close();
-        return true;
-    }
-</script>
-
-</body>
-</html>
+```<!doctype html>
+   <html lang="en">
+   <head>
+       <meta charset="utf-8">
+       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+   
+       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+   
+       <link rel="stylesheet" href="./assets/addons/das_modul/css/image.css">
+       <link rel="stylesheet" href="./assets/addons/das_modul/css/video.css">
+       <link rel="stylesheet" href="./assets/addons/das_modul/css/cards.css">
+       <link rel="stylesheet" href="./assets/addons/das_modul/css/abstand.css">
+       <link rel="stylesheet" href="./assets/addons/das_modul/css/modal.css">
+       <!-- <link rel="stylesheet" href="./assets/addons/das_modul/css/unitegallerycss.css"> -->
+   
+   
+       <script type='text/javascript' src='./assets/addons/das_modul/vendor/unitegallery/js/jquery-11.0.min.js'></script>
+       <script type='text/javascript' src='./assets/addons/das_modul/vendor/unitegallery/js/unitegallery.min.js'></script>
+   
+       <link rel='stylesheet' href='./assets/addons/das_modul/vendor/unitegallery/css/unite-gallery.css' type='text/css' />
+   
+       <script type='text/javascript' src='./assets/addons/das_modul/vendor/unitegallery/themes/default/ug-theme-default.js'></script>
+   
+   
+       <script type='text/javascript' src='./assets/addons/das_modul/vendor/unitegallery/themes/carousel/ug-theme-carousel.js'></script>
+       <script type='text/javascript' src='./assets/addons/das_modul/vendor/unitegallery/themes/compact/ug-theme-compact.js'></script>
+   
+   
+       <script type='text/javascript' src='./assets/addons/das_modul/vendor/unitegallery/themes/tiles/ug-theme-tiles.js'></script>
+       <script type='text/javascript' src='./assets/addons/das_modul/vendor/unitegallery/themes/tilesgrid/ug-theme-tilesgrid.js'></script>
+       <script type='text/javascript' src='./assets/addons/das_modul/vendor/unitegallery/themes/grid/ug-theme-grid.js'></script>
+   
+       <script type='text/javascript' src='./assets/addons/das_modul/vendor/unitegallery/themes/slider/ug-theme-slider.js'></script>
+   
+   
+       <link rel='stylesheet' 		  href='./assets/addons/das_modul/vendor/unitegallery/themes/default/ug-theme-default.css' type='text/css' />
+   
+   
+   </head>
+   <body>
+   
+   REX_ARTICLE[]
+   
+   
+   
+   
+   <script>
+       $(".open-rex_modal").on('click', function(e){
+   
+           $(".close-rex_modal").click();
+   
+   
+           e.preventDefault();
+           e.stopImmediatePropagation;
+   
+           var $this = $(this),
+               modal = $($this).data("modal");
+   
+   
+           $(modal).parents(".rex_modal-overlay").addClass("open");
+           $(modal).addClass("open");
+   
+           // $(modal).parents(".rex_modal-overlay").insertBefore( "#footer" );
+   
+           $(document).on('click', function(e){
+               var target = $(e.target);
+   
+               if ($(target).hasClass("rex_modal-overlay")){
+                   $(target).find(".rex_modal").each( function(){
+                       $(this).removeClass("open");
+                   });
+                   $(target).removeClass("open");
+               }
+           });
+       });
+   
+       $(".close-rex_modal").on('click', function(e){
+           e.preventDefault();
+           e.stopImmediatePropagation;
+   
+           var $this = $(this),
+               modal = $($this).data("modal");
+   
+           $(modal).removeClass("open");
+           $(".rex_modal-overlay").removeClass("open");
+   
+       });
+   
+       function printDiv(divId) {
+           var content = document.getElementById(divId).innerHTML;
+           var mywindow = window.open('', 'Print', 'height=10,width=10');
+   
+           mywindow.document.write('<html><head><title>Print</title>');
+           mywindow.document.write('</head><body>');
+           mywindow.document.write(content);
+           mywindow.document.write('</body></html>');
+   
+           mywindow.document.close();
+           mywindow.focus()
+           mywindow.print();
+           mywindow.close();
+           return true;
+       }
+   </script>
+   
+   </body>
+   </html>
 ```
 
 

@@ -34,6 +34,10 @@ class rex_das_modul_helper
                     redactor2::insertProfile('simple', 'Angelegt durch das Addon: "Das Modul".', '200', '800', 'relative', '0', '0', '0', '1', 'bold, italic, underline, deleted, quote, sub, sup, code, unorderedlist, orderedlist, grouplink[external|internal|email], cleaner', '');
                 }
             }
+            if ( rex_addon::get( 'cke5' )->isAvailable() ) {
+                $return = 'cke5';
+                //add fallback
+            }
             if (rex_addon::get('tinymce4')->isAvailable()) {
                 $return = 'tinymce4';
             }
