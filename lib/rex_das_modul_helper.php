@@ -55,7 +55,6 @@ class rex_das_modul_helper
     ////////////////////////////////////
     function container_input($id)
     {
-        /*
         $s = new rex_select();
         $s->setName('REX_INPUT_VALUE['.$id.'][0][container]');
         $s->addOptions([
@@ -82,7 +81,7 @@ class rex_das_modul_helper
         ';
 
         echo $form;
-           */
+          /*
         $mform = new MForm();
         $mform->addFieldset('Breite des Inhaltes <i class="module_help_link fa fa-exclamation-triangle" aria-hidden="true"></i>');
         $mform->addHtml('<div class="module_help_content">
@@ -94,6 +93,7 @@ class rex_das_modul_helper
             'container-fluid'  => 'volle Browserbreite'
         ), array('label' => 'Breite'));
         echo $mform->show();
+          */
      }
 
     ////////////////////////////////////
