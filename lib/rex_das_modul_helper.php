@@ -12,7 +12,13 @@ class rex_das_modul_helper
 
   /////////////////////////////////////////////////////////
   //
-  //  check Editor (MarkitUp / Redactor 2 / CKE5 / Tinymce4)
+  //  check Editor
+  //
+  //  MarkitUp   - funktioniert
+  //  Tinymce4   - funktioniert
+  //  CKE5       - funktioniert
+  //
+  //  Redactor 2 - funktioniert nicht
   //
   //////////////////////////////////////////////////////////
 
@@ -35,9 +41,8 @@ class rex_das_modul_helper
                 }
             }
             if ( rex_addon::get( 'cke5' )->isAvailable() ) {
-                $return = 'cke5';
-                //add fallback
-            }
+                $return = 'cke5' ;
+              }
             if (rex_addon::get('tinymce4')->isAvailable()) {
                 $return = 'tinymce4';
             }
@@ -208,6 +213,15 @@ class rex_das_modul_helper
                 'id' => 'redactor2_00' . $id
             ));
         }
+        if ($texteditor == 'cke5') {
+            $mform->addTextAreaField("$id.0.textarea_content", array(
+                'label' => 'Text',
+                'class' => "cke5-editor",
+                'id' => 'cke5' . $id,
+                'data-profile'=>'default',
+                'data-min-height'=>'500'
+            ));
+        }
         if ($texteditor == 'tinymce4') {
             $mform->addTextAreaField("$id.0.textarea_content", array(
                 'label' => 'Text',
@@ -234,9 +248,9 @@ class rex_das_modul_helper
                 $text = html_entity_decode($textarea);
             } else if ($texteditor == 'tinymce4') {
                 $text = html_entity_decode($textarea);
+            } else if ($texteditor == 'cke5') {
+                $text = html_entity_decode($textarea);
             }
-
-
             $fe_output[] = $text;
             $be_output[] = '
             <legend>Text</legend>
