@@ -55,6 +55,34 @@ class rex_das_modul_helper
     ////////////////////////////////////
     function container_input($id)
     {
+        /*
+        $s = new rex_select();
+        $s->setName('REX_INPUT_VALUE['.$id.'][0][container]');
+        $s->addOptions([
+            'container'  => 'so breit wie der Inhalt',
+            'container-fluid'  => 'volle Browserbreite'
+        ]);
+
+        $form = '
+        <fieldset class="form-horizontal">
+            <legend>Breite des Inhaltes <i class="module_help_link fa fa-exclamation-triangle" aria-hidden="true"></i></legend>
+            <div class="module_help_content">
+                <p>Hier kann die Breite des Modulinhaltes für die Frontendausgabe angegeben werden.</p>
+                <em>Im Backend wird diese Information nur ausgegeben sofern <i>"volle Browserbreite"</i> ausgewählt ist.</em>
+            </div>
+            <div class="form-group">
+                <div class="col-md-2 control-label"><label>Bild</label></div>
+                <div class="col-md-10">
+                    <div class="rex-select-style">
+                        '.$s->get().'
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+        ';
+
+        echo $form;
+           */
         $mform = new MForm();
         $mform->addFieldset('Breite des Inhaltes <i class="module_help_link fa fa-exclamation-triangle" aria-hidden="true"></i>');
         $mform->addHtml('<div class="module_help_content">
@@ -66,7 +94,7 @@ class rex_das_modul_helper
             'container-fluid'  => 'volle Browserbreite'
         ), array('label' => 'Breite'));
         echo $mform->show();
-    }
+     }
 
     ////////////////////////////////////
     //  ID / Class
