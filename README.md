@@ -94,10 +94,18 @@ Einbindung der Unite Gallery
 ### Sonstige Funktionen
 
 - **check Editor**
-Hier wird geprüft welcher Editor installiert ist. _Leider unterstützt MBlock den Redactor2 Editor nicht mehr._ Aktuell funktionieren nur "MarkItUp" und "Tinymce4". Die Unterstützung für den "CKEditor 5" wird evtl. noch eingebaut. 
+Hier wird geprüft welcher Editor installiert ist.<br/>
+MarkitUp   - funktioniert
+Tinymce4   - funktioniert
+CKE5       - funktioniert
+Redactor 2 - [funktioniert nicht](https://github.com/FriendsOfREDAXO/redactor2/issues/134)
+
+---
 
 - **container_input**
 Funktion um die "Breite" des Containers zu definieren. 
+
+---
 
 - **id_class_input**
 Funktion für die Eingaben der Klassen und IDs

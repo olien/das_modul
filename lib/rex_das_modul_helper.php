@@ -68,13 +68,12 @@ class rex_das_modul_helper
         echo $mform->show();
     }
 
-
-
     ////////////////////////////////////
     //  ID / Class
     ////////////////////////////////////
     function id_class_input($id)
     {
+
         $mform = new MForm();
         $mform->addFieldset('ID / Klassen(n) <i class="module_help_link fa fa-exclamation-triangle" aria-hidden="true"></i>');
         $mform->addHtml('<div class="module_help_content">
@@ -101,6 +100,7 @@ class rex_das_modul_helper
         $mform->addTextField("$id.0.col_class", array('label' => 'Col Klasse(n)'));
         $mform->addHtml('</div>');
         echo $mform->show();
+
     }
 
 
@@ -965,7 +965,7 @@ class rex_das_modul_helper
                         <li><a class="close-rex_modal" data-modal="#rex_modal" href="javascript:void(0);"><span>Fenster schließen</span></a></li>
                     </ul>
                 </div>
-                <div class="rex_modal-content" id="print'.$rand.'">
+                <div class="rex_modal-content content" id="print'.$rand.'">
                     '.$article_content.'
                 </div>
                 </div>

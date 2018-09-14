@@ -202,7 +202,7 @@ $outback[] = '
     <fieldset class="form-horizontal">';
 foreach ( $values[5] as $val ) {
     if ( $val['container'] != 'container' ) {
-        $fullwidth = $val['container'];
+        $fullwidth = 'container-fluid';
         $outback[] = '
           <div class="form-group">
             <label class="col-sm-3 label_left">Breite des Inhaltes</label>
@@ -211,6 +211,8 @@ foreach ( $values[5] as $val ) {
             </div>
           </div>
         ';
+    } else {
+        $fullwidth = 'container';
     }
     if ($val['container_id']!='') {
         $container_id = 'id="'.$val['container_id'].'"';
