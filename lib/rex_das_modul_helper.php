@@ -651,18 +651,19 @@ class rex_das_modul_helper
         $mform->addHtml('<div class="module_help_content">
 	            <p>Hier kann ein Abstand in Pixel angegeben werden. Wird kein Wert eingegeben wird ein Wert von 30px benutzt.</p>
 	          </div>');
+        $mform->addMediaField(3, array('label' => 'Bild'));
         $mform->addTextField("$id.0.space_size", array('label' => 'Abstand in px'));
         $mform->addSelectField("$id.0.space_image", array(
             'nein' => 'nein',
             'ja' => 'ja'
-        ), array('label' => 'Grafik'));
+        ), array('label' => 'Bild anzeigen'));
         $mform->addSelectField("$id.0.space_line", array(
             'nein' => 'nein',
             'ja' => 'ja'
         ), array('label' => 'Linie'));
     }
 
-    function space_output($space_size,$space_linie,$space_image )
+    function space_output($own_image,$space_size,$space_linie,$space_image )
     {
         $fe_output = [];
         $be_output = [];
@@ -678,7 +679,14 @@ class rex_das_modul_helper
 
         if ($space_image == 'ja') {
             $divider_class_image = 'image';
-            $image         = '<img src="./assets/addons/das_modul/images/divider.png" width="30" height="30" alt="divider">';
+
+            if ($image == '') {
+                if($own_image != '') {
+                   $image = '<img src="index.php?rex_media_type=rex_mediapool_preview&rex_media_file='.$own_image.'" width="30" height="30" alt="divider"/>';
+                } else {
+                    $image = '<img src="./assets/addons/das_modul/images/divider.png" width="30" height="30" alt="divider">';
+                }
+            }
         }
         if ($space_linie == 'ja') {
             $divider_class_line = ' line';
@@ -687,13 +695,25 @@ class rex_das_modul_helper
             $lineandimage = ' both';
         }
 
-        $be_output[] = '<legend>Abstand</legend>
+        $be_output[] = '<legend>Abstand</legend>';
+
+        if($own_image != '') {
+            $be_output[] = '
+	              <div class="form-group">
+	                <div class="col-sm-3 label_left">Bild</div>
+	                <div class="col-sm-9">
+                        ' . $image . '
+                    </div>
+	              </div>';
+        }
+
+        $be_output[] ='
 	              <div class="form-group">
 	                <div class="col-sm-3 label_left">Abstand</div>
 	                <div class="col-sm-9">' . $space_size . ' px</div>
 	              </div>
 	              <div class="form-group">
-	                <div class="col-sm-3 label_left">Grafik anzeigen</div>
+	                <div class="col-sm-3 label_left">Bild anzeigen</div>
 	                <div class="col-sm-9">' . $space_image . '</div>
                   </div>
 	              <div class="form-group">

@@ -1,6 +1,6 @@
 .das_modul {
 
-  $trennline: #f00;
+  $trennline-color: #eee;
 
   .trenner {
     clear: both;
@@ -34,7 +34,7 @@
       span {
         &:before,
         &:after {
-          background: $trennline !important;
+          background: $trennline-color !important;
         }
       }
     }

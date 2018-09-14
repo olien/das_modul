@@ -131,8 +131,8 @@ foreach ( $reihenfolge as $nummer ) {
                     $outback[]             = $dm_output->image_output( $val['REX_MEDIA_2'],$val['REX_LINK_2'] );
                     break;
                 case 'space':
-                    $html_block[$zaehler] .= $dm_output->space_output( $val['space_size'],$val['space_line'],$val['space_image'] );
-                    $outback[]             = $dm_output->space_output( $val['space_size'],$val['space_line'],$val['space_image'] );
+                    $html_block[$zaehler] .= $dm_output->space_output( $val['REX_MEDIA_3'], $val['space_size'],$val['space_line'],$val['space_image'] );
+                    $outback[]             = $dm_output->space_output( $val['REX_MEDIA_3'], $val['space_size'],$val['space_line'],$val['space_image'] );
                     break;
                 case 'artikel_modal':
                     $html_block[$zaehler] .= $dm_output->modal_output( $val['modal_headline'],$val['REX_LINK_1'],$val['modal_link_bezeichnung'],$val['modal_link_type'], $val['modal_print']);
