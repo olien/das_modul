@@ -96,7 +96,7 @@ Einbindung der Unite Gallery
 - **check Editor**
 Hier wird geprüft welcher Editor installiert ist. _Leider unterstützt MBlock den Redactor2 Editor nicht mehr._ Aktuell funktionieren nur "MarkItUp" und "Tinymce4". Die Unterstützung für den "CKEditor 5" wird evtl. noch eingebaut. 
 
-- **container_input / container_output**
+- **container_input**
 Funktion um die "Breite" des Containers zu definieren. 
 
 - **id_class_input**

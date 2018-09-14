@@ -50,7 +50,6 @@ class rex_das_modul_helper
         }
     }
 
-
     ////////////////////////////////////
     // Container
     ////////////////////////////////////
@@ -69,28 +68,6 @@ class rex_das_modul_helper
         echo $mform->show();
     }
 
-    function container_output($container)
-    {
-        $fe_output = [];
-        $be_output = [];
-
-        $fe_output[] = $container;
-
-        if ($container == 'container_fluid') {
-
-            $be_output[] = '
-      <legend>Breite des Inhaltes</legend>
-      <div class="form-group">
-        <div class="col-sm-4 label_left">Breite</div>
-        <div class="col-sm-8">volle Browserbreite</div>
-      </div>';
-        }
-        if (!rex::isBackend()) {
-            return implode($fe_output);
-        } else {
-            return implode($be_output);
-        }
-    }
 
 
     ////////////////////////////////////

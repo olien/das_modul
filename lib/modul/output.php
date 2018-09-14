@@ -201,7 +201,7 @@ $outback[] = '
     <legend>Weitere Modul Einstellungen</legend>
     <fieldset class="form-horizontal">';
 foreach ( $values[5] as $val ) {
-    if ( $val['container'] != '' ) {
+    if ( $val['container'] != 'container' ) {
         $fullwidth = $val['container'];
         $outback[] = '
           <div class="form-group">
