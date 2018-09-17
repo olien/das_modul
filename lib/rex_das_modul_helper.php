@@ -94,7 +94,7 @@ class rex_das_modul_helper
             'container-fluid'  => 'volle Browserbreite'
         ), array('label' => 'Breite'));
         echo $mform->show();
-     
+
      }
 
     ////////////////////////////////////
