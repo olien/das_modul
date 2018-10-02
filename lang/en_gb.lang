@@ -1,0 +1,27 @@
+gensfleisch_1468                        = Gensfleisch 1468
+
+cc_help                                 = Help
+
+cc_legend_slices                        = Content (Slices)
+cc_config_checkbox_slices               = Delete content
+cc_del_success_slices                   = All content has been deleted
+
+cc_config_checkbox_slices_all           = Delete all content
+cc_info1_slices                         = Content of language
+cc_info2_slices                         = delete
+
+cc_del_success_slices1                  = All contents of this language
+cc_del_success_slices2                  = has been deleted
+
+cc_legend_categories_articles          = Categories and articles
+cc_config_checkbox_categories_articles = delete all categories and articles (in all languages)
+cc_del_success_categories_articles     = All categories and articles have been deleted
+
+cc_legend_media                         = Media
+cc_config_checkbox_media_cats           = delete all media categories
+cc_del_success_media_cats               = all media categories are deleted
+
+cc_config_checkbox_media                = delete all media
+cc_del_success_media                    = All media has been deleted
+
+cc_config_clear                         = Delete content irrevocably
