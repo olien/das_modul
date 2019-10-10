@@ -1,0 +1,27 @@
+gensfleisch_1468                        = Gensfleisch 1468
+
+cc_help = aiuto
+
+cc_legend_slices = Contenuto (Slice)
+cc_config_checkbox_slices = Elimina contenuto
+cc_del_success_slices = Tutto il contenuto è stato eliminato
+
+cc_config_checkbox_slices_all = Elimina tutti i contenuti
+cc_info1_slices = Contenuto della lingua
+cc_info2_slices = elimina
+
+cc_del_success_slices1 = Tutti i contenuti della lingua
+cc_del_success_slices2 = sono stati eliminati
+
+cc_legend_categories_articles = Categorie e articoli
+cc_config_checkbox_categories_articles = elimina tutte le categorie e gli articoli (in tutte le lingue)
+cc_del_success_categories_articles = Tutte le categorie e gli articoli sono stati eliminati
+
+cc_legend_media = media
+cc_config_checkbox_media_cats = elimina tutte le categorie multimediali
+cc_del_success_media_cats = Tutte le categorie multimediali sono state eliminate
+
+cc_config_checkbox_media = elimina tutti i media
+cc_del_success_media = Tutti i media sono stati eliminati
+
+cc_config_clear = Elimina definitivamente il contenuto

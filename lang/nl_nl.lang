@@ -1,0 +1,27 @@
+gensfleisch_1468 = Gensfleisch 1468
+
+cc_help = help
+
+cc_legend_slices = Content (segmenten)
+cc_config_checkbox_slices = Inhoud verwijderen
+cc_del_success_slices = Alle inhoud is verwijderd
+
+cc_config_checkbox_slices_all = Verwijder alle inhoud
+cc_info1_slices = Inhoud van de taal
+cc_info2_slices = verwijderen
+
+cc_del_success_slices1 = Alle inhoud van de taal
+cc_del_success_slices2 = zijn verwijderd
+
+cc_legend_categories_articles = Categorieën en artikelen
+cc_config_checkbox_categories_articles = verwijder alle categorieën en artikelen (in alle talen)
+cc_del_success_categories_articles = Alle categorieën en artikelen zijn verwijderd
+
+cc_legend_media = media
+cc_config_checkbox_media_cats = verwijder alle mediacategorieën
+cc_del_success_media_cats = Alle mediacategorieën zijn verwijderd
+
+cc_config_checkbox_media = verwijder alle media
+cc_del_success_media = Alle media zijn verwijderd
+
+cc_config_clear = Inhoud permanent verwijderen
