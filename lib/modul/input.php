@@ -1,13 +1,5 @@
 <?php
 
-/*
-
-* Überschrift mit Anker
-
-
-*/
-
-
 $values         = array();
 $values[1]      = array( '1', rex_var::toArray( 'REX_VALUE[1]' ) );
 $values[2]      = array( '2', rex_var::toArray( 'REX_VALUE[2]' ) );

@@ -12,7 +12,13 @@ class rex_das_modul_helper
 
   /////////////////////////////////////////////////////////
   //
-  //  check Editor (MarkitUp / Redactor 2 / CKE5 / Tinymce4)
+  //  check Editor
+  //
+  //  MarkitUp   - funktioniert
+  //  Tinymce4   - funktioniert
+  //  CKE5       - funktioniert
+  //
+  //  Redactor 2 - funktioniert nicht
   //
   //////////////////////////////////////////////////////////
 
@@ -34,6 +40,9 @@ class rex_das_modul_helper
                     redactor2::insertProfile('simple', 'Angelegt durch das Addon: "Das Modul".', '200', '800', 'relative', '0', '0', '0', '1', 'bold, italic, underline, deleted, quote, sub, sup, code, unorderedlist, orderedlist, grouplink[external|internal|email], cleaner', '');
                 }
             }
+            if ( rex_addon::get( 'cke5' )->isAvailable() ) {
+                $return = 'cke5' ;
+              }
             if (rex_addon::get('tinymce4')->isAvailable()) {
                 $return = 'tinymce4';
             }
@@ -41,12 +50,39 @@ class rex_das_modul_helper
         }
     }
 
-
     ////////////////////////////////////
     // Container
     ////////////////////////////////////
     function container_input($id)
     {
+        /*
+        $s = new rex_select();
+        $s->setName('REX_INPUT_VALUE['.$id.'][0][container]');
+        $s->addOptions([
+            'container'  => 'so breit wie der Inhalt',
+            'container-fluid'  => 'volle Browserbreite'
+        ]);
+
+        $form = '
+        <fieldset class="form-horizontal">
+            <legend>Breite des Inhaltes <i class="module_help_link fa fa-exclamation-triangle" aria-hidden="true"></i></legend>
+            <div class="module_help_content">
+                <p>Hier kann die Breite des Modulinhaltes für die Frontendausgabe angegeben werden.</p>
+                <em>Im Backend wird diese Information nur ausgegeben sofern <i>"volle Browserbreite"</i> ausgewählt ist.</em>
+            </div>
+            <div class="form-group">
+                <div class="col-md-2 control-label"><label>Bild</label></div>
+                <div class="col-md-10">
+                    <div class="rex-select-style">
+                        '.$s->get().'
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+        ';
+
+        echo $form;
+        */
         $mform = new MForm();
         $mform->addFieldset('Breite des Inhaltes <i class="module_help_link fa fa-exclamation-triangle" aria-hidden="true"></i>');
         $mform->addHtml('<div class="module_help_content">
@@ -58,37 +94,15 @@ class rex_das_modul_helper
             'container-fluid'  => 'volle Browserbreite'
         ), array('label' => 'Breite'));
         echo $mform->show();
-    }
 
-    function container_output($container)
-    {
-        $fe_output = [];
-        $be_output = [];
-
-        $fe_output[] = $container;
-
-        if ($container == 'container_fluid') {
-
-            $be_output[] = '
-      <legend>Breite des Inhaltes</legend>
-      <div class="form-group">
-        <div class="col-sm-4 label_left">Breite</div>
-        <div class="col-sm-8">volle Browserbreite</div>
-      </div>';
-        }
-        if (!rex::isBackend()) {
-            return implode($fe_output);
-        } else {
-            return implode($be_output);
-        }
-    }
-
+     }
 
     ////////////////////////////////////
     //  ID / Class
     ////////////////////////////////////
     function id_class_input($id)
     {
+
         $mform = new MForm();
         $mform->addFieldset('ID / Klassen(n) <i class="module_help_link fa fa-exclamation-triangle" aria-hidden="true"></i>');
         $mform->addHtml('<div class="module_help_content">
@@ -115,6 +129,7 @@ class rex_das_modul_helper
         $mform->addTextField("$id.0.col_class", array('label' => 'Col Klasse(n)'));
         $mform->addHtml('</div>');
         echo $mform->show();
+
     }
 
 
@@ -204,6 +219,15 @@ class rex_das_modul_helper
                 'id' => 'redactor2_00' . $id
             ));
         }
+        if ($texteditor == 'cke5') {
+            $mform->addTextAreaField("$id.0.textarea_content", array(
+                'label' => 'Text',
+                'class' => "cke5-editor",
+                'id' => 'cke5' . $id,
+                'data-profile'=>'default',
+                'data-min-height'=>'500'
+            ));
+        }
         if ($texteditor == 'tinymce4') {
             $mform->addTextAreaField("$id.0.textarea_content", array(
                 'label' => 'Text',
@@ -230,9 +254,9 @@ class rex_das_modul_helper
                 $text = html_entity_decode($textarea);
             } else if ($texteditor == 'tinymce4') {
                 $text = html_entity_decode($textarea);
+            } else if ($texteditor == 'cke5') {
+                $text = html_entity_decode($textarea);
             }
-
-
             $fe_output[] = $text;
             $be_output[] = '
             <legend>Text</legend>
@@ -656,18 +680,19 @@ class rex_das_modul_helper
         $mform->addHtml('<div class="module_help_content">
 	            <p>Hier kann ein Abstand in Pixel angegeben werden. Wird kein Wert eingegeben wird ein Wert von 30px benutzt.</p>
 	          </div>');
+        $mform->addMediaField(3, array('label' => 'Bild'));
         $mform->addTextField("$id.0.space_size", array('label' => 'Abstand in px'));
         $mform->addSelectField("$id.0.space_image", array(
             'nein' => 'nein',
             'ja' => 'ja'
-        ), array('label' => 'Grafik'));
+        ), array('label' => 'Bild anzeigen'));
         $mform->addSelectField("$id.0.space_line", array(
             'nein' => 'nein',
             'ja' => 'ja'
         ), array('label' => 'Linie'));
     }
 
-    function space_output($space_size,$space_linie,$space_image )
+    function space_output($own_image,$space_size,$space_linie,$space_image )
     {
         $fe_output = [];
         $be_output = [];
@@ -683,7 +708,14 @@ class rex_das_modul_helper
 
         if ($space_image == 'ja') {
             $divider_class_image = 'image';
-            $image         = '<img src="./assets/addons/das_modul/images/divider.png" width="30" height="30" alt="divider">';
+
+            if ($image == '') {
+                if($own_image != '') {
+                   $image = '<img src="index.php?rex_media_type=rex_mediapool_preview&rex_media_file='.$own_image.'" width="30" height="30" alt="divider"/>';
+                } else {
+                    $image = '<img src="./assets/addons/das_modul/images/divider.png" width="30" height="30" alt="divider">';
+                }
+            }
         }
         if ($space_linie == 'ja') {
             $divider_class_line = ' line';
@@ -692,13 +724,25 @@ class rex_das_modul_helper
             $lineandimage = ' both';
         }
 
-        $be_output[] = '<legend>Abstand</legend>
+        $be_output[] = '<legend>Abstand</legend>';
+
+        if($own_image != '') {
+            $be_output[] = '
+	              <div class="form-group">
+	                <div class="col-sm-3 label_left">Bild</div>
+	                <div class="col-sm-9">
+                        ' . $image . '
+                    </div>
+	              </div>';
+        }
+
+        $be_output[] ='
 	              <div class="form-group">
 	                <div class="col-sm-3 label_left">Abstand</div>
 	                <div class="col-sm-9">' . $space_size . ' px</div>
 	              </div>
 	              <div class="form-group">
-	                <div class="col-sm-3 label_left">Grafik anzeigen</div>
+	                <div class="col-sm-3 label_left">Bild anzeigen</div>
 	                <div class="col-sm-9">' . $space_image . '</div>
                   </div>
 	              <div class="form-group">
@@ -970,7 +1014,7 @@ class rex_das_modul_helper
                         <li><a class="close-rex_modal" data-modal="#rex_modal" href="javascript:void(0);"><span>Fenster schließen</span></a></li>
                     </ul>
                 </div>
-                <div class="rex_modal-content" id="print'.$rand.'">
+                <div class="rex_modal-content content" id="print'.$rand.'">
                     '.$article_content.'
                 </div>
                 </div>

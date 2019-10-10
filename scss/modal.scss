@@ -1,183 +1,22 @@
-// @method: prefixer
-// @usage: @include prefixer(border-radius, 10px, webkit moz ms o spec);
-// @syntax: property, value, prefixes
+$rex_modal-overlay-background:    rgba(0, 0, 0, 0.3);
+$rex_modal-overlay-blur:          3px;
 
-@mixin prefixer($property, $value, $prefixes: spec) {
-  @each $prefix in $prefixes {
-    @if $prefix == webkit {
-      -webkit-#{$property}: $value;
-    } @else if $prefix == moz {
-      -moz-#{$property}: $value;
-    } @else if $prefix == ms {
-      -ms-#{$property}: $value;
-    } @else if $prefix == khtml {
-      -khtml-#{$property}: $value;
-    } @else if $prefix == o {
-      -o-#{$property}: $value;
-    } @else if $prefix == spec {
-      #{$property}: $value;
-    } @else {
-      @warn "Unrecognized prefix: #{$prefix}";
-    }
-  }
-}
-// @method: border-radius
-// @usage: @include border-radius(10px);
-// @usage: @include border-radius(10px, 10px, border-top-right-radius);
-// @syntax: radius-width,radius-vertical-width,property
+$rex_moda-nav-height:             40px;
 
-@mixin border-radius($default-radius, $vertical-radius: false, $property: border-radius) {
-  @if $vertical-radius {
-    @include prefixer($property, $default-radius, webkit moz spec);
-    @include prefixer($property, $default-radius unquote("/") $vertical-radius, moz khtml);
-  } @else {
-    @include prefixer($property, $default-radius, webkit moz spec);
-  }
-}
-
-// @method: border-top-radius
-// @usage: @include border-top-radius(10px);
-// @syntax: radius-width,radius-vertical-width
-
-@mixin border-top-radius($default-radius, $vertical-radius: false) {
-  @include border-radius($default-radius, $vertical-radius, border-top-left-radius);
-  @include border-radius($default-radius, $vertical-radius, border-top-right-radius);
-}
-
-// @method: border-right-radius
-// @usage: @include border-right-radius(10px);
-// @syntax: radius-width,radius-vertical-width
-
-@mixin border-right-radius($default-radius, $vertical-radius: false) {
-  @include border-radius($default-radius, $vertical-radius, border-top-right-radius);
-  @include border-radius($default-radius, $vertical-radius, border-bottom-right-radius);
-}
-
-// @method: border-bottom-radius
-// @usage: @include border-bottom-radius(10px);
-// @syntax: radius-width,radius-vertical-width
-
-@mixin border-bottom-radius($default-radius, $vertical-radius: false) {
-  @include border-radius($default-radius, $vertical-radius, border-bottom-left-radius);
-  @include border-radius($default-radius, $vertical-radius, border-bottom-right-radius);
-}
-
-// @method: border-left-radius
-// @usage: @include border-left-radius(10px);
-// @syntax: radius-width,radius-vertical-width
-
-@mixin border-left-radius($default-radius, $vertical-radius: false) {
-  @include border-radius($default-radius, $vertical-radius, border-top-left-radius);
-  @include border-radius($default-radius, $vertical-radius, border-bottom-left-radius);
-}
-
-// @method: border-top-left-radius
-// @usage: @include border-top-left-radius(10px);
-// @syntax: radius-width,radius-vertical-width
-
-@mixin border-top-left-radius($default-radius, $vertical-radius: false) {
-  @include border-radius($default-radius, $vertical-radius, border-top-left-radius);
-}
-
-// @method: border-top-right-radius
-// @usage: @include border-top-right-radius(10px);
-// @syntax: radius-width,radius-vertical-width
-
-@mixin border-top-right-radius($default-radius, $vertical-radius: false) {
-  @include border-radius($default-radius, $vertical-radius, border-top-right-radius);
-}
-
-// @method: border-bottom-left-radius
-// @usage: @include border-bottom-left-radius(10px);
-// @syntax: radius-width,radius-vertical-width
-
-@mixin border-bottom-left-radius($default-radius, $vertical-radius: false) {
-  @include border-radius($default-radius, $vertical-radius, border-bottom-left-radius);
-}
-
-// @method: border-bottom-right-radius
-// @usage: @include border-bottom-right-radius(10px);
-// @syntax: radius-width,radius-vertical-width
-
-@mixin border-bottom-right-radius($default-radius, $vertical-radius: false) {
-  @include border-radius($default-radius, $vertical-radius, border-bottom-right-radius);
-}
-
-// @method: border-image
-// @usage: @include border-image(image:url(border.png) 30 30 round);
-// @syntax: source slice width outset repeat|initial|inherit
-
-// @mixin border-image ($image)
-// {
-//     @include prefixer(border-image, $image, webkit moz o spec);
-// }
-
-// forked from git.io/1dMSeg
-
-// @method: border-image
-// @usage: @include border-image(image:url(border.png) 30 30 round);
-//         @include border-image(url("image.png"));
-//         @include border-image(url("image.png") 20 stretch);
-//         @include border-image(linear-gradient(45deg, orange, yellow));
-//         @include border-image(linear-gradient(45deg, orange, yellow) stretch);
-//         @include border-image(linear-gradient(45deg, orange, yellow) 20 30 40 50 stretch round);
-//         @include border-image(radial-gradient(top, cover, orange, yellow, orange));
-
-@mixin border-image($borders...) {
-  $webkit-borders: ();
-  $spec-borders: ();
-
-  @each $border in $borders {
-    $webkit-border: ();
-    $spec-border: ();
-    $border-type: type-of($border);
-
-    @if $border-type == string or list {
-      $border-str: if($border-type == list, nth($border, 1), $border);
-
-      $url-str: str-slice($border-str, 0, 3);
-      $gradient-type: str-slice($border-str, 0, 6);
-
-      @if $url-str == "url" {
-        $webkit-border: $border;
-        $spec-border: $border;
-      } @else if $gradient-type == "linear" {
-        $gradients: _linear-gradient-parser("#{$border}");
-        $webkit-border: map-get($gradients, webkit-image);
-        $spec-border: map-get($gradients, spec-image);
-      } @else if $gradient-type == "radial" {
-        $gradients: _radial-gradient-parser("#{$border}");
-        $webkit-border: map-get($gradients, webkit-image);
-        $spec-border: map-get($gradients, spec-image);
-      } @else {
-        $webkit-border: $border;
-        $spec-border: $border;
-      }
-    } @else {
-      $webkit-border: $border;
-      $spec-border: $border;
-    }
-
-    $webkit-borders: append($webkit-borders, $webkit-border, comma);
-    $spec-borders: append($spec-borders, $spec-border, comma);
-  }
-
-  -webkit-border-image: $webkit-borders;
-  border-image: $spec-borders;
-  border-style: solid;
-}
+$rex_modal-headline-font:         Arial, Helvetica, sans-serif;
+$rex_modal-headline-font-size:    12px;
 
 
+$rex_modal-nav-font:              Arial, Helvetica, sans-serif;
+$rex_modal-nav-font-size:         10px;
+$rex_modal-nav-background:        #eee;
+
+$rex_modal-headline-color:        #444;
+
+$rex_modal-nav-link-color:        #444;
+$rex_modal-nav-link-color-hover:  #000;
 
 
-
-$rex_modal-overlay-background: rgba(0, 0, 0, 0.5);
-$rex_modal-overlay-blur: 3px;
-$rex_modal-headline-color: #444;
-$rex_modal-headline-font: Arial, Helvetica, sans-serif;;
-$rex_modal-nav-background: #eee;
-$rex_modal-nav-link-color: #444;
-$rex_modal-nav-link-color-hover: #000;
 
 .rex_modal-overlay {
   position: fixed;
@@ -187,7 +26,6 @@ $rex_modal-nav-link-color-hover: #000;
   flex-direction: column;
   top: 0;
   left: 0;
-  background: $rex_modal-overlay-background;
   opacity: 0;
   pointer-events: none;
   transition: 0.35s ease-in-out;
@@ -196,352 +34,7 @@ $rex_modal-nav-link-color-hover: #000;
   min-height: 100vh;
   overflow-y: auto;
   z-index: 9999;
-  -webkit-backdrop-filter: blur($rex_modal-overlay-blur);
-  backdrop-filter: blur($rex_modal-overlay-blur);
-  &.open {
-    opacity: 1;
-    pointer-events: inherit;
-  }
-}
-
-
-
-.rex_modal {
-  background: red;
-  opacity: 0;
-  pointer-events: none;
-  transition: 0.35s ease-in-out;
-  max-height: 100vh;
-  max-width: 100vw;
-  overflow: auto;
-  @include border-radius(6px);
-  box-shadow: 0 10px 50px rgba(0, 0, 0, .5);
-  margin: 3rem;
-}
-
-.rex_modal-overlay .rex_modal.open {
-  opacity: 1;
-  pointer-events: inherit;
-}
-
-.rex_modal-overlay .rex_modal.open .rex_modal-content {
-  transform: translate(0, 0px);
-  opacity: 1;
-}
-
-.rex_modal-overlay .rex_modal .rex_modal-content {
-  transform: translate(0, -110px);
-  opacity: 0;
-  transition: 0.35s ease-in-out;
-
-}
-
-.rex_modalnav {
-  width: 100%;
-  z-index: 999999;
-  text-align: right;
-  background: $rex_modal-nav-background;
-  .headline {
-    display: inline-block;
-    font-family: $rex_modal-headline-font;
-    font-size: 12px;
-    float: left;
-    color: $rex_modal-headline-color;
-    padding: 11px 24px 0 24px;
-    text-align: left;
-    font-weight: bold;
-  }
-  ul {
-    padding: 3px 24px 0 0;
-    display: inline-block;
-    li {
-      list-style: none;
-      display: inline-block;
-      float: left;
-      margin-left: 16px;
-      a {
-        position: relative;
-        font-family: Arial, Helvetica, sans-serif;;
-        font-size: 10px;
-        font-weight: bold;
-        text-decoration: none;
-        color: $rex_modal-nav-link-color;
-        &:before {
-          content: "";
-          position: absolute;
-          width: 100%;
-          height: 1px;
-          bottom: -2px;
-          left: 0;
-          background-color: $rex_modal-nav-link-color-hover;
-          visibility: hidden;
-          -webkit-transform: scaleX(0);
-          transform: scaleX(0);
-          -webkit-transition: all 0.25s ease-in-out 0s;
-          transition: all 0.25s ease-in-out 0s;
-        }
-        &:after {
-          margin: 2px 0 0 6px;
-          font-family: 'FontAwesome';
-          font-size: 14px;
-          font-weight: normal;
-          text-decoration: none;
-          color: #444;
-        }
-        &:hover {
-          cursor: pointer;
-          color: $rex_modal-nav-link-color-hover;
-          &:before {
-            visibility: visible;
-            -webkit-transform: scaleX(1);
-            transform: scaleX(1);
-            color: $rex_modal-nav-link-color-hover;
-
-          }
-          &:after {
-            color: $rex_modal-nav-link-color-hover;
-          }
-        }
-      }
-      &:before {
-        display: none;
-      }
-      .print-rex_modal {
-        &:after {
-          content: "\f02f";
-        }
-      }
-      .close-rex_modal {
-        &:after {
-          content: "\f00d";
-        }
-      }
-    }
-  }
-}
-
-
-
-
-@media (max-width: 576px) {
-  .rex_modal-overlay .rex_modal {
-    margin: 0;
-    @include border-radius(0px);
-  }
-  .rex_modalnav {
-    a {
-      span {
-        display: none;
-      }
-      &:before {
-        display: none;
-
-      }
-      &:after {
-        font-size: 24px !important;
-      }
-    }
-  }
-}
-
-// @method: prefixer
-// @usage: @include prefixer(border-radius, 10px, webkit moz ms o spec);
-// @syntax: property, value, prefixes
-
-@mixin prefixer($property, $value, $prefixes: spec) {
-  @each $prefix in $prefixes {
-    @if $prefix == webkit {
-      -webkit-#{$property}: $value;
-    } @else if $prefix == moz {
-      -moz-#{$property}: $value;
-    } @else if $prefix == ms {
-      -ms-#{$property}: $value;
-    } @else if $prefix == khtml {
-      -khtml-#{$property}: $value;
-    } @else if $prefix == o {
-      -o-#{$property}: $value;
-    } @else if $prefix == spec {
-      #{$property}: $value;
-    } @else {
-      @warn "Unrecognized prefix: #{$prefix}";
-    }
-  }
-}
-// @method: border-radius
-// @usage: @include border-radius(10px);
-// @usage: @include border-radius(10px, 10px, border-top-right-radius);
-// @syntax: radius-width,radius-vertical-width,property
-
-@mixin border-radius($default-radius, $vertical-radius: false, $property: border-radius) {
-  @if $vertical-radius {
-    @include prefixer($property, $default-radius, webkit moz spec);
-    @include prefixer($property, $default-radius unquote("/") $vertical-radius, moz khtml);
-  } @else {
-    @include prefixer($property, $default-radius, webkit moz spec);
-  }
-}
-
-// @method: border-top-radius
-// @usage: @include border-top-radius(10px);
-// @syntax: radius-width,radius-vertical-width
-
-@mixin border-top-radius($default-radius, $vertical-radius: false) {
-  @include border-radius($default-radius, $vertical-radius, border-top-left-radius);
-  @include border-radius($default-radius, $vertical-radius, border-top-right-radius);
-}
-
-// @method: border-right-radius
-// @usage: @include border-right-radius(10px);
-// @syntax: radius-width,radius-vertical-width
-
-@mixin border-right-radius($default-radius, $vertical-radius: false) {
-  @include border-radius($default-radius, $vertical-radius, border-top-right-radius);
-  @include border-radius($default-radius, $vertical-radius, border-bottom-right-radius);
-}
-
-// @method: border-bottom-radius
-// @usage: @include border-bottom-radius(10px);
-// @syntax: radius-width,radius-vertical-width
-
-@mixin border-bottom-radius($default-radius, $vertical-radius: false) {
-  @include border-radius($default-radius, $vertical-radius, border-bottom-left-radius);
-  @include border-radius($default-radius, $vertical-radius, border-bottom-right-radius);
-}
-
-// @method: border-left-radius
-// @usage: @include border-left-radius(10px);
-// @syntax: radius-width,radius-vertical-width
-
-@mixin border-left-radius($default-radius, $vertical-radius: false) {
-  @include border-radius($default-radius, $vertical-radius, border-top-left-radius);
-  @include border-radius($default-radius, $vertical-radius, border-bottom-left-radius);
-}
-
-// @method: border-top-left-radius
-// @usage: @include border-top-left-radius(10px);
-// @syntax: radius-width,radius-vertical-width
-
-@mixin border-top-left-radius($default-radius, $vertical-radius: false) {
-  @include border-radius($default-radius, $vertical-radius, border-top-left-radius);
-}
-
-// @method: border-top-right-radius
-// @usage: @include border-top-right-radius(10px);
-// @syntax: radius-width,radius-vertical-width
-
-@mixin border-top-right-radius($default-radius, $vertical-radius: false) {
-  @include border-radius($default-radius, $vertical-radius, border-top-right-radius);
-}
-
-// @method: border-bottom-left-radius
-// @usage: @include border-bottom-left-radius(10px);
-// @syntax: radius-width,radius-vertical-width
-
-@mixin border-bottom-left-radius($default-radius, $vertical-radius: false) {
-  @include border-radius($default-radius, $vertical-radius, border-bottom-left-radius);
-}
-
-// @method: border-bottom-right-radius
-// @usage: @include border-bottom-right-radius(10px);
-// @syntax: radius-width,radius-vertical-width
-
-@mixin border-bottom-right-radius($default-radius, $vertical-radius: false) {
-  @include border-radius($default-radius, $vertical-radius, border-bottom-right-radius);
-}
-
-// @method: border-image
-// @usage: @include border-image(image:url(border.png) 30 30 round);
-// @syntax: source slice width outset repeat|initial|inherit
-
-// @mixin border-image ($image)
-// {
-//     @include prefixer(border-image, $image, webkit moz o spec);
-// }
-
-// forked from git.io/1dMSeg
-
-// @method: border-image
-// @usage: @include border-image(image:url(border.png) 30 30 round);
-//         @include border-image(url("image.png"));
-//         @include border-image(url("image.png") 20 stretch);
-//         @include border-image(linear-gradient(45deg, orange, yellow));
-//         @include border-image(linear-gradient(45deg, orange, yellow) stretch);
-//         @include border-image(linear-gradient(45deg, orange, yellow) 20 30 40 50 stretch round);
-//         @include border-image(radial-gradient(top, cover, orange, yellow, orange));
-
-@mixin border-image($borders...) {
-  $webkit-borders: ();
-  $spec-borders: ();
-
-  @each $border in $borders {
-    $webkit-border: ();
-    $spec-border: ();
-    $border-type: type-of($border);
-
-    @if $border-type == string or list {
-      $border-str: if($border-type == list, nth($border, 1), $border);
-
-      $url-str: str-slice($border-str, 0, 3);
-      $gradient-type: str-slice($border-str, 0, 6);
-
-      @if $url-str == "url" {
-        $webkit-border: $border;
-        $spec-border: $border;
-      } @else if $gradient-type == "linear" {
-        $gradients: _linear-gradient-parser("#{$border}");
-        $webkit-border: map-get($gradients, webkit-image);
-        $spec-border: map-get($gradients, spec-image);
-      } @else if $gradient-type == "radial" {
-        $gradients: _radial-gradient-parser("#{$border}");
-        $webkit-border: map-get($gradients, webkit-image);
-        $spec-border: map-get($gradients, spec-image);
-      } @else {
-        $webkit-border: $border;
-        $spec-border: $border;
-      }
-    } @else {
-      $webkit-border: $border;
-      $spec-border: $border;
-    }
-
-    $webkit-borders: append($webkit-borders, $webkit-border, comma);
-    $spec-borders: append($spec-borders, $spec-border, comma);
-  }
-
-  -webkit-border-image: $webkit-borders;
-  border-image: $spec-borders;
-  border-style: solid;
-}
-
-
-
-
-
-$rex_modal-overlay-background: rgba(0, 0, 0, 0.5);
-$rex_modal-overlay-blur: 3px;
-$rex_modal-headline-color: #444;
-$rex_modal-headline-font: Arial, Helvetica, sans-serif;;
-$rex_modal-nav-background: #eee;
-$rex_modal-nav-link-color: #444;
-$rex_modal-nav-link-color-hover: #000;
-
-.rex_modal-overlay {
-  position: fixed;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  top: 0;
-  left: 0;
   background: $rex_modal-overlay-background;
-  opacity: 0;
-  pointer-events: none;
-  transition: 0.35s ease-in-out;
-  max-height: 100vh;
-  width: 100%;
-  min-height: 100vh;
-  overflow-y: auto;
-  z-index: 9999;
   -webkit-backdrop-filter: blur($rex_modal-overlay-blur);
   backdrop-filter: blur($rex_modal-overlay-blur);
   &.open {
@@ -560,9 +53,12 @@ $rex_modal-nav-link-color-hover: #000;
   max-height: 100vh;
   max-width: 100vw;
   overflow: auto;
-  @include border-radius(6px);
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  border-radius: 6px;
   box-shadow: 0 10px 50px rgba(0, 0, 0, .5);
   margin: 3rem;
+
 }
 
 .rex_modal-overlay .rex_modal.open {
@@ -573,6 +69,7 @@ $rex_modal-nav-link-color-hover: #000;
 .rex_modal-overlay .rex_modal.open .rex_modal-content {
   transform: translate(0, 0px);
   opacity: 1;
+  padding: 24px 8px 24px 8px;
 }
 
 .rex_modal-overlay .rex_modal .rex_modal-content {
@@ -587,10 +84,11 @@ $rex_modal-nav-link-color-hover: #000;
   z-index: 999999;
   text-align: right;
   background: $rex_modal-nav-background;
+  height: $rex_moda-nav-height;
   .headline {
     display: inline-block;
     font-family: $rex_modal-headline-font;
-    font-size: 12px;
+    font-size: $rex_modal-headline-font-size;
     float: left;
     color: $rex_modal-headline-color;
     padding: 11px 24px 0 24px;
@@ -598,17 +96,17 @@ $rex_modal-nav-link-color-hover: #000;
     font-weight: bold;
   }
   ul {
-    padding: 3px 24px 0 0;
+    padding: 6px 24px 0 0;
     display: inline-block;
     li {
       list-style: none;
       display: inline-block;
       float: left;
       margin-left: 16px;
-      a {
+      a, span{
         position: relative;
         font-family: Arial, Helvetica, sans-serif;;
-        font-size: 10px;
+        font-size: $rex_modal-nav-font-size;
         font-weight: bold;
         text-decoration: none;
         color: $rex_modal-nav-link-color;
@@ -632,7 +130,8 @@ $rex_modal-nav-link-color-hover: #000;
           font-size: 14px;
           font-weight: normal;
           text-decoration: none;
-          color: #444;
+          color: $rex_modal-nav-link-color;
+          background-color: $rex_modal-nav-background;
         }
         &:hover {
           cursor: pointer;
@@ -641,8 +140,6 @@ $rex_modal-nav-link-color-hover: #000;
             visibility: visible;
             -webkit-transform: scaleX(1);
             transform: scaleX(1);
-            color: $rex_modal-nav-link-color-hover;
-
           }
           &:after {
             color: $rex_modal-nav-link-color-hover;
@@ -674,7 +171,9 @@ $rex_modal-nav-link-color-hover: #000;
     margin: 0;
     min-width: 100%;
     min-height: 100%;
-    @include border-radius(0px);
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
   }
   .rex_modalnav {
     a {
