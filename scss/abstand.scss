@@ -1,9 +1,7 @@
 .das_modul {
 
-  $trennline-color: #eee;
-  $new-color: #ff0;
-  $red:     $new-color;
-
+  $trennline: #f00;
+  $background-color: #000;
   .trenner {
     clear: both;
     display: inline-block;
